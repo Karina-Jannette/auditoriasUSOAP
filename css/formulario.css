@@ -1,0 +1,64 @@
+@page {
+    margin: 0cm 0cm;
+}
+
+        /** Defina ahora los márgenes reales de cada página en el PDF **/
+        body {
+            margin-top: 3cm;
+            margin-left: 2cm;
+            margin-right: 2cm;
+            margin-bottom: 2cm;
+        }
+
+table {
+    width: 97.8%;
+}
+th, td {
+    text-align: center;
+    vertical-align: top;
+    border: 1px solid #000;
+    border-collapse: collapse;
+    caption-side: bottom;
+}
+
+th {
+    font-size: 25px;
+}
+
+h3{
+    color:#fff;
+    position: center;
+}
+.encabezado{
+    background-color: #7C0B23;
+}
+.estatico{
+    background-color: #CFBB8A;
+    font-weight: bold;
+}
+.subencabezado{
+    background-color: #E0D9C7;
+    font-weight: bold;
+    text-align: left;
+}
+.firmas{
+    background-color: #E0D9C7;
+}
+.final{
+    background-color: #E0D9C7;
+    font-weight: bold;
+}
+.header{
+    position: fixed;
+    top: 0cm;
+    left: 0cm;
+    right: 0cm;
+    height: 3cm;
+}
+.footer{
+    position: fixed; 
+    bottom: 0cm; 
+    left: 0cm; 
+    right: 0cm;
+    height: 2cm;
+}
