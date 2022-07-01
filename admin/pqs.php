@@ -148,7 +148,7 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
 
         <!-- Modal Agregar-->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog  modal-lg" role="document">
                 <div class="modal-content">
 
                     <form id="form_pqs" enctype="multipart/form-data">
