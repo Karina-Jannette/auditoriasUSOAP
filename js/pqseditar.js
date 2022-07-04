@@ -112,15 +112,15 @@ function editar_pq(){
 
 function infoEdit(editar){
   $.ajax({
-    url: '../admin/consultpqs.php',
-    type: 'GET'
+    url: "../admin/consultpqs.php",
+    type: "GET"
   }).done(function(resp){
     obj = JSON.parse(resp);
     let res = obj.data;
     for (U = 0; U < res.length; U++){
       if(obj.data[U].id_pq == editar)
       datos = obj.data[U].num_pq +'*'+ obj.data[U].area +'*'+ obj.data[U].area_afac +'*'+ obj.data[U].elemento +'*'+ obj.data[U].pregunta +'*'+ obj.data[U].orientacion +'*'+ obj.data[U].inciso +'*'+ obj.data[U].documentos;
-
+      
       //Llenado
       var data = datos.split('*');
       let area = data[1]; //Se llama a la información de la BD
@@ -143,8 +143,7 @@ function infoEdit(editar){
   })
 }
 
-//Función editar y eliminar 
-
+//Función eliminar 
 $(document).ready(function(){
     var idEliminar= -1;
     var fila;

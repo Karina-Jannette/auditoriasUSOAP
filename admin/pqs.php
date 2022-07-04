@@ -28,7 +28,11 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
     <link rel="stylesheet" href="./layouts/css/adminlte.min.css">
     <!--Tabla-->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+    <!--<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />-->
 
 </head>
 
@@ -124,7 +128,6 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
                                         </button></td>
                                     </tr>
                                     <?php } ?>
-
                                 </tbody>
                             </table>
                         </div>
@@ -141,9 +144,7 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-
                     <form id="form_pqs" enctype="multipart/form-data">
-                        <!-- action="./insertarpq.php" method="POST" -->
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Dar de alta PQ</h5>
                         </div>
@@ -247,7 +248,6 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
         <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-
                     <form method="POST" enctype="multipart/form-data">
                         <!--  action="./editarpq.php"-->
                         <div class="modal-header">
@@ -329,6 +329,7 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
         </div>
         <?php include "./layouts/footer.php";?>
     </div>
+
     <!-- jQuery -->
     <script src="./layouts/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
@@ -338,16 +339,13 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
     <script src="./layouts/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
-    <!-- Extrar los datos de la BD -->
-    <script src="../js/pqsextraer.js"></script>
     <!-- Agregar, Editar y Eliminar -->
     <script src="../js/pqseditar.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+   <!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
     <script>
     $(document).ready(function() {
         $('#example1').DataTable({
             "scrollX": true
-
         });
     });
     </script>
