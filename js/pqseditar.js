@@ -120,7 +120,7 @@ function infoEdit(editar){
     for (U = 0; U < res.length; U++){
       if(obj.data[U].id_pq == editar)
       datos = obj.data[U].num_pq +'*'+ obj.data[U].area +'*'+ obj.data[U].area_afac +'*'+ obj.data[U].elemento +'*'+ obj.data[U].pregunta +'*'+ obj.data[U].orientacion +'*'+ obj.data[U].inciso +'*'+ obj.data[U].documentos;
-      
+
       //Llenado
       var data = datos.split('*');
       let area = data[1]; //Se llama a la información de la BD
@@ -163,4 +163,13 @@ $(document).ready(function(){
         $(fila).fadeOut(1000);
       });
     });  
+});
+
+$(document).ready(function(){
+  var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+     removeItemButton: true,
+     maxItemCount:5,
+     searchResultLimit:5,
+     renderChoiceLimit:5
+   }); 
 });

@@ -28,11 +28,9 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
     <link rel="stylesheet" href="./layouts/css/adminlte.min.css">
     <!--Tabla-->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
-    <!--<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />-->
+    <!--<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>-->
+    <link rel="stylesheet" href="../dist/css/select2.min.css">
+    
 
 </head>
 
@@ -168,9 +166,9 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
                                         ?>
                                     </select>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" id="choices-multiple-remove-button">
                                     <label for="area_afac">Área AFAC</label>
-                                    <select class="js-example-basic-multiple" name="area_afac[]" id="area_afac"
+                                    <select class="js-example-basic-multiple" name="area_afac[]" id="area_afac "
                                         multiple="multiple" style="width: 100%" required data-placeholder="Seleccione área AFAC">
                                         <!--Se le pone plugin para selección multiple-->
                                         <?php
@@ -341,7 +339,8 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
     <!-- Agregar, Editar y Eliminar -->
     <script src="../js/pqseditar.js"></script>
-   <!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
+    <!--<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>-->
+    <script src="../dist/js/select2.full.min.js"></script>
     <script>
     $(document).ready(function() {
         $('#example1').DataTable({
