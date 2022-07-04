@@ -152,7 +152,7 @@ $resultado = $conexion->query("SELECT * from usuarios")or die ($conexion->error)
                                 <div class="form-group">
                                     <label for="id_rol">ID Rol</label>
                                     <select class="js-example-basic-multiple" name="rol[]" id="rol" multiple="multiple"
-                                        style="width: 100%" required>
+                                        style="width: 100%" required data-placeholder="Rol">
                                         <!--Se le pone plugin para selección multiple-->
                                         <?php
                                           $res= $conexion->query("select * from  rol");
@@ -170,7 +170,7 @@ $resultado = $conexion->query("SELECT * from usuarios")or die ($conexion->error)
                                 <div class="form-group">
                                     <label for="id_area">Área asignada</label>
                                     <select class="js-example-basic-multiple" name="id_area[]" id="id_area"
-                                        multiple="multiple" style="width: 100%" required>
+                                        multiple="multiple" style="width: 100%" required data-placeholder="Área">
                                         <!--Se le pone plugin para selección multiple-->
                                         <?php
                                           $res= $conexion->query("select * from  areas");

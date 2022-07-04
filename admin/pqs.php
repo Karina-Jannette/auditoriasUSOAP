@@ -113,24 +113,15 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
                                         <td><?php echo $fila['inciso'];?></td>
                                         <td><?php echo $fila['documentos'];?></td>
 
-                                        <td><button class="btn btn-success btnEditar"
-                                                data-id="<?php echo $fila['id_pq'];?>"
-                                                data-num_pq="<?php echo $fila['num_pq'];?>"
-                                                data-area="<?php echo $fila['area'];?>"
-                                                data-area_afac="<?php echo $fila['area_afac'];?>"
-                                                data-elemento="<?php echo $fila['elemento'];?>"
-                                                data-pregunta="<?php echo $fila['pregunta'];?>"
-                                                data-orientacion="<?php echo $fila['orientacion'];?>"
-                                                data-inciso="<?php echo $fila['inciso'];?>"
-                                                data-documentos="<?php echo $fila['documentos'];?>" data-toggle="modal"
-                                                data-target="#modalEditar">
-                                                <i class="fa fa-edit"></i></button></td>
+                                        <td><button class="btn btn-success btnEditar" data-toggle="modal"
+                                            data-target="#modalEditar" onclick="infoEdit(<?php echo $fila['id_pq'];?>)">
+                                            <i class="fa fa-edit"></i>
+                                        </button></td>
 
                                         <td><button class="btn btn-danger btnEliminar"
-                                                data-id="<?php echo $fila['id_pq'];?>" data-toggle="modal"
-                                                data-target="#modalEliminar">
-                                                <i class="fa fa-trash"></i></button></td>
-
+                                            data-id="<?php echo $fila['id_pq'];?>" data-toggle="modal"
+                                            data-target="#modalEliminar"><i class="fa fa-trash"></i>
+                                        </button></td>
                                     </tr>
                                     <?php } ?>
 
@@ -148,7 +139,7 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
 
         <!-- Modal Agregar-->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog  modal-lg" role="document">
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
 
                     <form id="form_pqs" enctype="multipart/form-data">
@@ -166,7 +157,7 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
                                 <div class="form-group">
                                     <label for="area">Área asignada</label>
                                     <select class="js-example-basic-multiple" name="area[]" id="area"
-                                        multiple="multiple" style="width: 100%" required>
+                                        multiple="multiple" style="width: 100%" required data-placeholder="Seleccione área">
                                         <!--Se le pone plugin para selección multiple-->
                                         <?php
                                             $res= $conexion->query("select * from  areas");
@@ -179,7 +170,7 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
                                 <div class="form-group">
                                     <label for="area_afac">Área AFAC</label>
                                     <select class="js-example-basic-multiple" name="area_afac[]" id="area_afac"
-                                        multiple="multiple" style="width: 100%" required>
+                                        multiple="multiple" style="width: 100%" required data-placeholder="Seleccione área AFAC">
                                         <!--Se le pone plugin para selección multiple-->
                                         <?php
                                             $res= $conexion->query("select * from  areas_afac");
@@ -254,7 +245,7 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
 
         <!-- Modal Editar -->
         <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
 
                     <form method="POST" enctype="multipart/form-data">

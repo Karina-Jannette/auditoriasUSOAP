@@ -70,7 +70,6 @@ function editar_pq(){
          area1 += ',' + selectObject.options[i].value;
        }
    }
-
    gstarea = area1.substr(1);
    let area = gstarea;
 
@@ -82,10 +81,8 @@ function editar_pq(){
          area_afac1 += ',' + select.options[i].value;
        }
    }
-
    gstarea_afac = area_afac1.substr(1);
    let area_afac = gstarea_afac;
-
 
   let num_pq =  document.getElementById("num_pq1").value;
   let elemento =  document.getElementById("elemento1").value;
@@ -111,14 +108,45 @@ function editar_pq(){
       //setTimeout("location.href='pqs.php';",1500);
     }
   });
+}
 
+function infoEdit(editar){
+  $.ajax({
+    url: '../admin/consultpqs.php',
+    type: 'GET'
+  }).done(function(resp){
+    obj = JSON.parse(resp);
+    let res = obj.data;
+    for (U = 0; U < res.length; U++){
+      if(obj.data[U].id_pq == editar)
+      datos = obj.data[U].num_pq +'*'+ obj.data[U].area +'*'+ obj.data[U].area_afac +'*'+ obj.data[U].elemento +'*'+ obj.data[U].pregunta +'*'+ obj.data[U].orientacion +'*'+ obj.data[U].inciso +'*'+ obj.data[U].documentos;
+
+      //Llenado
+      var data = datos.split('*');
+      let area = data[1]; //Se llama a la información de la BD
+      let area_afac = data[2];
+      // const array1 = [area];
+      var data1 = area.split(','); //Se le indica que los datos son separados por una coma
+      var data2 = area_afac.split(',')
+      //console.log(data1);8
+      //console.log(data2);
+
+      $("#num_pq1").val(data[0]); //Se coloca el html para que sea abierto y no llegue a chocar, antes del primer # para ser mas especificos podría llevar #NombreForm
+      $("#area1").val(data1).trigger('change.select2'); //Se llama al array separado
+      $("#area_afac1").val(data2).trigger('change.select2');
+      $("#elemento1").val(data[3]);
+      $("#pregunta1").val(data[4]);
+      $("#orientacion1").val(data[5]);
+      $("#inciso1").val(data[6]);
+      $("#documentos1").val(data[7]);
+    }
+  })
 }
 
 //Función editar y eliminar 
 
 $(document).ready(function(){
     var idEliminar= -1;
-    var idEditar= -1;
     var fila;
     $(".btnEliminar").click(function(){
       idEliminar=$(this).data('id');
@@ -135,32 +163,5 @@ $(document).ready(function(){
         alert(res);
         $(fila).fadeOut(1000);
       });
-    });
-
-    //trae los datos para editar
-    $(".btnEditar").click(function(){
-  
-      idEditar=$(this).data('id');
-      var num_pq=$(this).data('num_pq');
-      var area =$(this).data('area');
-      var area_afac=$(this).data('area_afac');
-      var elemento=$(this).data('elemento');
-      var pregunta=$(this).data('pregunta');
-      var orientacion=$(this).data('orientacion');
-      var inciso=$(this).data('inciso');
-      var documentos=$(this).data('documentos');
-  
-      $("#num_pq1").val(num_pq);
-      $("#area1").val(area);
-      $("#area_afac1").val(area_afac);
-      $("#elemento1").val(elemento);
-      $("#pregunta1").val(pregunta);
-      $("#orientacion1").val(orientacion);
-      $("#inciso1").val(inciso);
-      $("#documentos1").val(documentos);
-      $("#idEdit").val(idEditar);
-      // alert(idEditar);
-  
-  });
-  
-  });
+    });  
+});
