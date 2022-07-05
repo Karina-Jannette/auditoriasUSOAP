@@ -28,17 +28,33 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
     <link rel="stylesheet" href="./layouts/css/adminlte.min.css">
     <!--Tabla-->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
 
     <div class="wrapper">
+
         <?php include "./layouts/header.php";?>
         <!--Obliga a iniciar sesión-->
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
+
+
+                <label for="area">Área asignada</label>
+                <select class="js-example-basic-multiple" name="area2[]" id="area2" multiple="multiple"
+                    style="width: 90%" required>
+                    <!--Se le pone plugin para selección multiple-->
+                    <?php
+                        $res= $conexion->query("select * from  areas");
+                        while($fila=mysqli_fetch_array($res)){
+                            echo '<option value="'.$fila['areas'].'">'.$fila['areas'].'</option>';
+                        }
+                    ?>
+                </select>
+
+
             <!-- Content Header (Page header) -->
             <div class="content-header">
                 <div class="container-fluid">
@@ -337,6 +353,7 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
     <!-- Agregar, Editar y Eliminar -->
     <script src="../js/pqseditar.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
     $(document).ready(function() {
