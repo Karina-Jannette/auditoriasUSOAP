@@ -1,8 +1,6 @@
 <?php
 // Mandamos llamar nuestra BD
-include 'conexion1.php';
 include_once ("validar_sesion1.php");
-
 ?>
 <!-- Navbar -->
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
