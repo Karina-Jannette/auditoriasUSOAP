@@ -1,12 +1,3 @@
-//Función selección multiple
-function multiselect(){ //Función para la selección multiple en la parte de rol y áreas
-  $(document).ready(function() {
-    $('.js-example-basic-multiple').select2({
-      theme: "classic" //pone el tema un poco mas moderno
-    });
-  });
-}
-
 //Función guardar
 function guardarpq(){
   //alert ("entrar guardar");
@@ -145,22 +136,22 @@ function infoEdit(editar){
 
 //Función eliminar 
 $(document).ready(function(){
-    var idEliminar= -1;
-    var fila;
-    $(".btnEliminar").click(function(){
-      idEliminar=$(this).data('id');
-      fila=$(this).parent('td').parent('tr');
+  var idEliminar= -1;
+  var fila;
+  $(".btnEliminar").click(function(){
+    idEliminar=$(this).data('id');
+    fila=$(this).parent('td').parent('tr');
+  });
+  $(".eliminar").click(function(){
+    $.ajax({
+      url: 'eliminarpq.php',
+      method: 'POST',
+      data:{
+        id:idEliminar
+      }
+    }).done(function(res){
+      alert(res);
+      $(fila).fadeOut(1000);
     });
-    $(".eliminar").click(function(){
-      $.ajax({
-        url: 'eliminarpq.php',
-        method: 'POST',
-        data:{
-          id:idEliminar
-        }
-      }).done(function(res){
-        alert(res);
-        $(fila).fadeOut(1000);
-      });
-    });  
+  });
 });

@@ -28,8 +28,7 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
     <link rel="stylesheet" href="./layouts/css/adminlte.min.css">
     <!--Tabla-->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
-    <!--<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>-->
-    <link rel="stylesheet" href="../dist/css/select2.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
 
 </head>
 
@@ -338,17 +337,17 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
     <!-- Agregar, Editar y Eliminar -->
     <script src="../js/pqseditar.js"></script>
-    <!--<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>-->
-    <script src="../dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
     $(document).ready(function() {
         $('#example1').DataTable({
             "scrollX": true
         });
+        //Selección multiple
+        $('.js-example-basic-multiple').select2({
+            theme: "classic" //pone el tema un poco mas moderno
+        });
     });
-    </script>
-    <script>
-    multiselect(); //se manda a llamar la función 
     </script>
 </body>
 
