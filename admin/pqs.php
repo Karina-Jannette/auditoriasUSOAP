@@ -115,14 +115,15 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
                                         <td><?php echo $fila['documentos'];?></td>
 
                                         <td><button class="btn btn-success btnEditar" data-toggle="modal"
-                                            data-target="#modalEditar" onclick="infoEdit(<?php echo $fila['id_pq'];?>)">
-                                            <i class="fa fa-edit"></i>
-                                        </button></td>
+                                                data-target="#modalEditar"
+                                                onclick="infoEdit(<?php echo $fila['id_pq'];?>)">
+                                                <i class="fa fa-edit"></i>
+                                            </button></td>
 
                                         <td><button class="btn btn-danger btnEliminar"
-                                            data-id="<?php echo $fila['id_pq'];?>" data-toggle="modal"
-                                            data-target="#modalEliminar"><i class="fa fa-trash"></i>
-                                        </button></td>
+                                                data-id="<?php echo $fila['id_pq'];?>" data-toggle="modal"
+                                                data-target="#modalEliminar"><i class="fa fa-trash"></i>
+                                            </button></td>
                                     </tr>
                                     <?php } ?>
                                 </tbody>
@@ -138,7 +139,8 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
         </div>
 
         <!-- Modal Agregar-->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+            data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <form id="form_pqs" enctype="multipart/form-data">
@@ -155,7 +157,7 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
                                 <div class="form-group">
                                     <label for="area">Área asignada</label>
                                     <select class="js-example-basic-multiple" name="area[]" id="area"
-                                        multiple="multiple" style="width: 100%" required data-placeholder="Seleccione área">
+                                        multiple="multiple" style="width: 100%" required>
                                         <!--Se le pone plugin para selección multiple-->
                                         <?php
                                             $res= $conexion->query("select * from  areas");
@@ -165,10 +167,10 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
                                         ?>
                                     </select>
                                 </div>
-                                <div class="form-group" id="choices-multiple-remove-button">
+                                <div class="form-group">
                                     <label for="area_afac">Área AFAC</label>
-                                    <select class="js-example-basic-multiple" name="area_afac[]" id="area_afac "
-                                        multiple="multiple" style="width: 100%" required data-placeholder="Seleccione área AFAC">
+                                    <select class="js-example-basic-multiple" name="area_afac[]" id="area_afac"
+                                        multiple="multiple" style="width: 100%" required>
                                         <!--Se le pone plugin para selección multiple-->
                                         <?php
                                             $res= $conexion->query("select * from  areas_afac");
@@ -196,8 +198,7 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
                                 </div>
                                 <div class="form-group">
                                     <label for="orientacion">Orientación para el examen de pruebas</label>
-                                    <textarea class="form-control" id="orientacion"
-                                        name="orientacion"></textarea>
+                                    <textarea class="form-control" id="orientacion" name="orientacion"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="inciso">Inciso</label>
@@ -205,8 +206,7 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
                                 </div>
                                 <div class="form-group">
                                     <label for="documentos">Documentos de referencia</label>
-                                    <textarea class="form-control" id="documentos"
-                                        name="documentos"></textarea>
+                                    <textarea class="form-control" id="documentos" name="documentos"></textarea>
                                 </div>
                             </div>
                         </div>

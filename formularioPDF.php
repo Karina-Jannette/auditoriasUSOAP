@@ -9,8 +9,6 @@ $datos = mysqli_fetch_assoc($query);
 
 ?>
 
-
-
 <?php
 ob_start();
 
