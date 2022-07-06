@@ -1,78 +1,113 @@
 function multiselect(){ //Función para la selección multiple en la parte de rol y áreas
   $(document).ready(function() {
     $('.js-example-basic-multiple').select2({
-      theme: "classic" //pone el tema un poco mas moderno
+      theme: "classic"  //pone el tema un poco mas moderno
     });
   });
 }
 
-function guardar(){
-  var formdata = {
-    
-  };
+function guardarEmp(){
+  //variables
+  let id_rol = document.getElementById("id_rol").value;
+  let num_empleado = document.getElementById("num_empleado").value;
+  let id_area  = document.getElementById("id_area").value;
+  let nombre = document.getElementById("nombre").value;
+  let apellido = document.getElementById("apellido").value;
+  let pass = document.getElementById("pass").value;
 
-  if($('#form_usuarios').find('#rol').val().join()!=='') formdata.id_rol= $('#form_usuarios').find('#rol').val().join();
-  if($('#form_usuarios').find('#num_empleado').val()!=='') formdata.num_empleado = $('#form_usuarios').find('#num_empleado').val();
-  if($('#form_usuarios').find('#id_area').val().join()!=='') formdata.id_area = $('#form_usuarios').find('#id_area').val().join();
-  if($('#form_usuarios').find('#nombre').val()!=='')  formdata.nombre = $('#form_usuarios').find('#nombre').val();
-  if($('#form_usuarios').find('#apellido').val()!=='')  formdata.apellido = $('#form_usuarios').find('#apellido').val();
-  if($('#form_usuarios').find('#pass').val()!=='') formdata.pass = $('#form_usuarios').find('#pass').val();
+  datos= 'id_rol='+id_rol + '&num_empleado='+num_empleado + '&id_area='+id_area + '&nombre='+nombre + '&apellido='+apellido + '&pass='+pass + '&opcion=guardarEmp'
+  alert(datos);
 
-  console.log(formdata);
+  if(id_rol==""||num_empleado==""||id_area==""||nombre==""||apellido==""||pass==""){
+    alert("Campos vacios");
+    return;
+  }else{
+    $.ajax({
+      url: "../admin/insertarUsuario.php",
+      method: "POST",
+      data: datos
+    }).done(function(res){
+      if(res==0){
+        alert("Alta de usuario con exito");
+        setTimeout("location.href='usuario.php';",1200);
+      }else{
+        alert(res);
+        alert("Error");
+      }
+    });
+  }
+}
 
+//Editar usuario 
+function datosEdit(editar){
+  //alert(editar);
   $.ajax({
-    url: 'insertarusuario.php',
-    method: 'POST',
-    data: formdata
-  }).done(function(res){
-    console.log(res)
-    alert(res.msj);
-    $(fila).fadeIn(400);
+    url: "../admin/cons_usuarios.php",
+    type: "GET"
+  }).done(function(resp){
+    obj = JSON.parse(resp);
+    let res = obj.data;
+    for (U = 0; U < res.length; U++){
+      if(obj.data[U].id_usuario == editar){
+        datos = obj.data[U].id_rol +'*'+ obj.data[U].num_empleado +'*'+ obj.data[U].id_area +'*'+ obj.data[U].nombre +'*'+ obj.data[U].apellido;
+
+        //Llenado
+        var data = datos.split('*');
+
+        $("#id_rol1").val(data[0]);
+        $("#num_empleado1").val(data[1]);
+        $("#id_area1").val(data[2]);
+        $("#nombre1").val(data[3]);
+        $("#apellido1").val(data[4]);
+      }
+    }
   });
-  //alert('Se ha dado clic');
+}
+
+function editUsuario(){
+  //variables
+  let id_rol = document.getElementById("id_rol1").value;
+  let num_empleado = document.getElementById("num_empleado1").value;
+  let id_area = document.getElementById("id_area1").value;
+  let nombre = document.getElementById("nombre1").value;
+  let apellido = document.getElementById("apellido1").value;
+
+  datos=  'id_rol='+id_rol + '&num_empleado='+num_empleado + '&id_area='+id_area + '&nombre='+nombre + '&apellido='+apellido + '&opcion=editUsuario'
+  //alert (datos);
+
+  //AJAX
+  $.ajax({
+    type: "POST",
+    url: "../admin/insertarUsuario.php",
+    data: datos
+  }).done(function(respuesta){
+    if(respuesta==0){
+      alert("Usuario editado");
+      setTimeout("location.href='usuario.php';",1200);
+    }else{
+      alert(respuesta);
+      alert("Error");
+    }
+  })
 }
 
 $(document).ready(function(){
-    var idEliminar= -1;
-    var idEditar= -1;
-    var fila;
-    $(".btnEliminar").click(function(){
-      idEliminar=$(this).data('id');
-      fila=$(this).parent('td').parent('tr');
-    });
-    $(".eliminar").click(function(){
-      $.ajax({
-        url: 'eliminarusuario.php',
-        method: 'POST',
-        data:{
-          id:idEliminar
-        }
-      }).done(function(res){
-        alert(res);
-        $(fila).fadeOut(1000);
-      });
-    });
-
-    $(".btnEditar").click(function(){
-  
-      idEditar=$(this).data('id');
-      var id_rol=$(this).data('id_rol');
-      var num_empleado=$(this).data('num_empleado');
-      var id_area=$(this).data('id_area');
-      var nombre=$(this).data('nombre');
-      var apellido=$(this).data('apellido');
-      //var contraseña=$(this).data('contraseña');
-  
-      // alert(orientacion);  
-      $("#id_rol1").val(id_rol);
-      $("#num_empleado1").val(num_empleado);
-      $("#id_area1").val(id_area);
-      $("#nombre1").val(nombre);
-      $("#apellido1").val(apellido);
-      //$("#contraseña1").val(contraseña);
-      $("#idEdit").val(idEditar);
-      // alert(idEditar);
-  
+  var idEliminar= -1;
+  var fila;
+  $(".btnEliminar").click(function(){
+    idEliminar=$(this).data('id');
+    fila=$(this).parent('td').parent('tr');
   });
-  
+  $(".eliminar").click(function(){
+    $.ajax({
+      url: 'eliminarusuario.php',
+      method: 'POST',
+      data:{
+        id:idEliminar
+      }
+    }).done(function(res){
+      alert(res);
+      $(fila).fadeOut(1000);
+    });
   });
+});

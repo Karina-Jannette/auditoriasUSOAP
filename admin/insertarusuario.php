@@ -1,33 +1,64 @@
 <?php
-require_once "../conexion.php";
+    include("../conexion.php");
+    session_start();
+    $id_persona = $_SESSION['usuario'];
 
-$res = new \stdClass();
+    $opcion = $_POST["opcion"];
+    $informacion = [];
 
-if( isset($_POST['id_rol']) && isset($_POST['num_empleado']) && isset($_POST['id_area'])
-&& isset($_POST['nombre']) && isset($_POST['apellido']) && isset($_POST['pass'])){
- 
+    //CONDICIONES ---------------------------------------------------------------------
+    if($opcion === 'guardarEmp'){
+        $id_rol  = $_POST['id_rol'];
+        $num_empleado = $_POST['num_empleado'];
+        $id_area  = $_POST['id_area'];
+        $nombre = $_POST['nombre'];
+        $apellido = $_POST['apellido'];
+        $pass = $_POST['pass'];
 
-    $conexion->query("insert into usuarios(id_rol,num_empleado,id_area,nombre,apellido,pass)
-        values (
-            '".$_POST['id_rol']."',
-            '".$_POST['num_empleado']."',
-            '".$_POST['id_area']."',
-            '".$_POST['nombre']."',
-            '".$_POST['apellido']."',
-            '".$_POST['pass']."'
-            )
-            ")or die($conexion->error);
+        if(guardarEmp($id_rol,$num_empleado,$id_area,$nombre,$apellido,$pass,$conexion)){
+            echo "0";
+        }else{
+            echo "1";
+        }
+    }else if($opcion === 'editUsuario'){
+        $id_rol = $_POST['id_rol'];
+        $num_empleado = $_POST['num_empleado'];
+        $id_area = $_POST['id_area'];
+        $nombre = $_POST['nombre'];
+        $apellido = $_POST['apellido'];
 
-            $res->msj = "El usuario se guardo correctamente"; 
- 
-            //header("Location: usuario.php?success"); al salir EL SUCCESS MOSTRABA EL MODAL 
+        if (editUsuario ($id_rol,$num_empleado,$id_area,$nombre,$apellido,$conexion)){
+            echo 0;
+        }else{
+            echo 1;
+        }
+    }
 
-}else{
 
-    $res->msj = "Favor de llenar todos los campos";
-    //header("Location: usuario.php?error=Favor de llenar todos los campos");
-}
+    //FUNCIONES -----------------------------------------------------------------------
+    function guardarEmp($id_rol,$num_empleado,$id_area,$nombre,$apellido,$pass,$conexion){
+        $query = "INSERT INTO usuarios VALUES (0,$id_rol,'$num_empleado',$id_area,'$nombre','$apellido,'$pass')";
+        $res = mysqli_query ($conexion,$query);
+        if ($res){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
-header("Content-Type: application/json"); echo json_encode($res);
-//echo $res;
+    function editUsuario($id_rol,$num_empleado,$id_area,$nombre,$apellido,$conexion){
+        $query = "UPDATE usuarios SET id_rol=$id_rol, id_area=$id_area, nombre='$nombre', apellido='$apellido' where num_empleado='$num_empleado'";
+        $resultado = mysqli_query($conexion,$query);
+        if($resultado){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    //Función para cerrar la conexión
+    function cerrar($conexion){
+        mysqli_close($conexion);
+    }
+
 ?>

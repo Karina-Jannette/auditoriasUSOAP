@@ -117,7 +117,7 @@ function confeliminarAnexo(eliminar){
 
 //Editar Anexo
 function editarAnexo(editar){
-  ///alert(editar);
+  //alert(editar);
   $.ajax({
     url: '../admin/cons_anexo.php',
     type: 'GET'
