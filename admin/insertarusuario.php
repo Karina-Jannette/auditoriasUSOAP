@@ -7,20 +7,24 @@
     $informacion = [];
 
     //CONDICIONES ---------------------------------------------------------------------
-    if($opcion === 'guardarEmp'){
-        $id_rol  = $_POST['id_rol'];
+
+    if($opcion === 'guardar'){
+        $id_rol = $_POST['id_rol'];
         $num_empleado = $_POST['num_empleado'];
-        $id_area  = $_POST['id_area'];
+        $id_area = $_POST['id_area'];
         $nombre = $_POST['nombre'];
         $apellido = $_POST['apellido'];
         $pass = $_POST['pass'];
 
-        if(guardarEmp($id_rol,$num_empleado,$id_area,$nombre,$apellido,$pass,$conexion)){
-            echo "0";
+        if(guardar($id_rol,$num_empleado,$id_area,$nombre,$apellido,$pass,$conexion)){
+            echo 0;
         }else{
-            echo "1";
+            echo 1;
         }
-    }else if($opcion === 'editUsuario'){
+    }
+    
+    //Editar usuario
+    if($opcion === 'editUsuario'){
         $id_rol = $_POST['id_rol'];
         $num_empleado = $_POST['num_empleado'];
         $id_area = $_POST['id_area'];
@@ -34,12 +38,11 @@
         }
     }
 
-
     //FUNCIONES -----------------------------------------------------------------------
-    function guardarEmp($id_rol,$num_empleado,$id_area,$nombre,$apellido,$pass,$conexion){
-        $query = "INSERT INTO usuarios VALUES (0,$id_rol,'$num_empleado',$id_area,'$nombre','$apellido,'$pass')";
-        $res = mysqli_query ($conexion,$query);
-        if ($res){
+    function guardar ($id_rol,$num_empleado,$id_area,$nombre,$apellido,$pass,$conexion){
+        $query = "INSERT INTO usuarios VALUES (0, '$id_rol','$num_empleado','$id_area','$nombre','$apellido','$pass')";
+        $resultado = mysqli_query($conexion,$query);
+        if($resultado){
             return true;
         }else{
             return false;

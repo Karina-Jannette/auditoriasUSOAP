@@ -124,7 +124,7 @@
                                         id="num_empleado" class="form-control" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="id_rol">ID Rol</label>
+                                    <label for="id_rol">Rol</label>
                                     <select name="id_rol" id="id_rol" class="form-control" required>
                                         <option>Rol</option>
                                         <?php
@@ -166,7 +166,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                            <button type="button"  onclick="guardarEmp()" class="btn btn-success">Guardar</button>
+                            <button type="button"  onclick="guardar()" class="btn btn-success">Guardar</button>
                         </div>
                     </form>
                 </div>

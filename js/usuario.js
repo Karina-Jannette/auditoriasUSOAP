@@ -6,7 +6,7 @@ function multiselect(){ //Función para la selección multiple en la parte de ro
   });
 }
 
-function guardarEmp(){
+function guardar(){
   //variables
   let id_rol = document.getElementById("id_rol").value;
   let num_empleado = document.getElementById("num_empleado").value;
@@ -15,8 +15,8 @@ function guardarEmp(){
   let apellido = document.getElementById("apellido").value;
   let pass = document.getElementById("pass").value;
 
-  datos= 'id_rol='+id_rol + '&num_empleado='+num_empleado + '&id_area='+id_area + '&nombre='+nombre + '&apellido='+apellido + '&pass='+pass + '&opcion=guardarEmp'
-  alert(datos);
+  datos= 'id_rol='+id_rol + '&num_empleado='+num_empleado + '&id_area='+id_area + '&nombre='+nombre + '&apellido='+apellido + '&pass='+pass + '&opcion=guardar'
+  //alert(datos);
 
   if(id_rol==""||num_empleado==""||id_area==""||nombre==""||apellido==""||pass==""){
     alert("Campos vacios");
