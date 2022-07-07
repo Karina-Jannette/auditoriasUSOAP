@@ -22,8 +22,10 @@ function guardar(){
       if(res==0){
         alert("Alta de usuario con exito");
         setTimeout("location.href='usuario.php';",1200);
+      }else if(res==2){
+        alert("El empleado ya está registrado");
       }else{
-        alert(res);
+        //alert(res);
         alert("Error");
       }
     });

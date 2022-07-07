@@ -46,9 +46,12 @@ function guardarpq(){
         if(res==0){
           alert("Alta con exito");
           setTimeout("location.href='pqs.php';",1500);
+        }else if(res==2){
+          alert("Esta PQ ya existe");
+          //alert(res);
         }else{
-          alert("error");
-          alert(res);
+          alert("Error");
+          //alert(res);
         }
       });
 

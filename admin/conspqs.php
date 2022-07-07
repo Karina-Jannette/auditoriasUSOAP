@@ -23,25 +23,40 @@
             }
 
     } else if ($opcion === 'guardarpq'){
-        
         $num_pq = $_POST['num_pq'];
-        $area = $_POST['area'];
-        $area_afac = $_POST['area_afac'];
-        $elemento = $_POST['elemento'];
-        $pregunta = $_POST['pregunta'];
-        $orientacion = $_POST['orientacion'];
-        $inciso = $_POST['inciso'];
-        $documentos = $_POST['documentos'];
 
-        if (guardarpq($num_pq,$area,$area_afac,$elemento,$pregunta,$orientacion,$inciso,$documentos,$conexion)){
-            echo "0";
+        if (comprobacion($num_pq,$conexion)){
+            $area = $_POST['area'];
+            $area_afac = $_POST['area_afac'];
+            $elemento = $_POST['elemento'];
+            $pregunta = $_POST['pregunta'];
+            $orientacion = $_POST['orientacion'];
+            $inciso = $_POST['inciso'];
+            $documentos = $_POST['documentos'];
+
+            if (guardarpq($num_pq,$area,$area_afac,$elemento,$pregunta,$orientacion,$inciso,$documentos,$conexion)){
+                echo "0";
+            }else{
+                echo "1";
+            }
         }else{
-            echo "1";
+            echo "2";
         }
-
     }
 
     //FUNCIONES-----------------------------------------------------------------------------------------------------------------------------------------
+
+    //Función para corroborar que no se duplique la PQ
+    function comprobacion($num_pq,$conexion){
+        $query = "SELECT * FROM pqs WHERE num_pq = '$num_pq'";
+        $resultado = mysqli_query($conexion,$query);
+        if($resultado->num_rows==0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 
     //Función para guardar PQ
     function guardarpq($num_pq,$area,$area_afac,$elemento,$pregunta,$orientacion,$inciso,$documentos,$conexion){

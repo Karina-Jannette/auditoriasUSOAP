@@ -525,10 +525,10 @@ function guardarsub(){
 
       }else if(res==2){
         alert("Duplicado");
-        alert(res);
+        //alert(res);
       }else{
         alert("Error");
-        alert(res);
+        //alert(res);
       }
     });
   }
