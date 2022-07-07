@@ -398,7 +398,6 @@ function editarsub(){
       if(respuesta==0){
         alert("Sub fracción editada");
         todopruebas();
-        setTimeout("location.href='anexos.php';",1200);
         /*swal({
           title: "Sub fracción editada",
           timer: 2000 ,
@@ -459,7 +458,6 @@ function eliminarsub(eliminar){
       if(res==0){
         alert("Se elimino con exito");
         todopruebas();
-        setTimeout("location.href='anexos.php';",1200);
       }else{
         alert("Error");
         alert(res);
@@ -516,7 +514,6 @@ function guardarsub(){
       if(res==0){
         alert("Alta con exito");
         todopruebas();
-        setTimeout("location.href='anexos.php';",1200);
         //Limpia los campos una vez que son guardados .value="";
         document.getElementById("detallest").value="";
         document.getElementById("sub_fraccion").value="";

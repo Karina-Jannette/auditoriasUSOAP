@@ -1,6 +1,7 @@
 <?php
     session_start();
     require_once "../conexion.php";
+
     $resultado = $conexion->query("SELECT * from usuarios")or die ($conexion->error);
 ?>
 
@@ -166,7 +167,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                            <button type="button"  onclick="guardar()" class="btn btn-success">Guardar</button>
+                            <button type="button" onclick="guardar()" class="btn btn-success">Guardar</button>
                         </div>
                     </form>
                 </div>
@@ -209,17 +210,17 @@
                                     id="num_empleado1" class="form-control" required disabled>
                             </div>
                             <div class="form-group">
-                                    <label for="id_rol1">ID Rol</label>
-                                    <select name="id_rol1" id="id_rol1" class="form-control" required>
-                                        <option>Rol</option>
-                                        <?php
+                                <label for="id_rol1">ID Rol</label>
+                                <select name="id_rol1" id="id_rol1" class="form-control" required>
+                                    <option>Rol</option>
+                                    <?php
                                           $res= $conexion->query("select * from rol");
                                           while($fila=mysqli_fetch_array($res)){
                                           echo '<option value="'.$fila['id_rol'].'">'.$fila['nombre'].'</option>';
                                           }
                                         ?>
-                                    </select>
-                                </div>
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label for="id_area1">Área asignada</label>
                                 <select name="id_area1" id="id_area1" class="form-control" required>
@@ -266,14 +267,15 @@
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
-    multiselect(); //se manda a llamar la función
-    </script>
-    <script>
     $(document).ready(function() {
         $('#example1').DataTable({
             "scrollX": true
         });
+        $('.js-example-basic-multiple').select2({
+            theme: "classic" //pone el tema un poco mas moderno
+        });
     });
     </script>
 </body>
+
 </html>

@@ -410,7 +410,6 @@
                                         <div class="align-items-right">
                                             <button type="button" class="btn btn-primary btn-sm" id="agregarsub"
                                                 onclick="guardarsub()">Agregar sub fracción</button>
-                                            <!--"todopruebas()"-->
                                         </div>
                                     </div>
                                 </div>

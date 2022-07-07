@@ -6,7 +6,7 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <!-- Basic -->
 
 <head>
@@ -40,11 +40,6 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css" />
 
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 </head>
 
 <body id="inner_page" data-spy="scroll" data-target="#navbar-wd" data-offset="98">
@@ -74,13 +69,6 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
                         <li><a class="nav-link" href="cerrar_sesion.php">Cerrar Sesion</a></li>
                     </ul>
                 </div>
-                <!--<div class="search-box">
-                    <input type="text" class="search-txt" placeholder="Buscar">
-                    <a class="">
-                        <span class="fa fa-search" style="font-size: 20px; margin-top: 15px;"
-                            styaria-hidden="true"></span>
-                    </a>
-                </div>-->
             </div>
         </nav>
     </header>
@@ -109,12 +97,21 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
     </div>
     <!-- end section -->
     <!-- section -->
+
     <div class="section layout_padding contact_section" style="background:#f6f6f6;">
         <div class="container">
+            <!--Recuadro para indicar la PQ-->
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Número de PQ</span>
+                </div>
+                <input type="text" class="form-control" name="pq" id="pq" disabled>
+            </div>
 
-            <form method="POST" enctype="multipart/form-data"> <!--action="./formulario-insertar.php"-->
+            <form method="POST" enctype="multipart/form-data">
                 <div class="accordion" id="accordionExample">
                     <div class="card">
+                        <!--Sección general-->
                         <div class="card-header" id="headingOne">
                             <h2 class="mb-0">
                                 <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
@@ -126,7 +123,6 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
                             data-parent="#accordionExample">
                             <div class="card-body">
-
                                 <div class="row">
                                     <div class="col">
                                         <label for="num_pq">Número de PQ </label>
@@ -134,7 +130,7 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
                                             required>
                                             <option>(Seleccione número de PQ)</option>
                                             <?php
-                                                $res= $conexion->query("select * from  pqs");
+                                                $res= $conexion->query("select * from pqs");
                                                 while($fila=mysqli_fetch_array($res)){
                                                     echo '<option value="'.$fila['num_pq'].'">'.$fila['num_pq'].'</option>';
                                                 }
@@ -150,7 +146,8 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
                                         <label for="elemento">Elemento crítico</label>
                                         <input type="text" name="elemento" class="form-control" id="elemento"
                                             placeholder="" required readonly>
-                                        <!--Readonly: es para poner los campos inactivos-->
+                                        <!--Readonly: es para poner los campos inactivos
+                                            disabled: los desabilita por completo-->
                                     </div>
                                 </div>
                                 <br>
@@ -161,45 +158,43 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
                                             <div class="col">
                                                 <label for="sin_contestar">Sin contestar</label><br><br>
                                                 <input type="text" name="sin_contestar" class="form-control"
-                                                    id="sin_contestar" placeholder="" disabled>
+                                                    id="sin_contestar" placeholder="">
                                             </div>
                                             <div class="col">
                                                 <label for="satisfactoria">Satisfactoria</label><br><br>
                                                 <input type="text" name="satisfactoria" class="form-control"
-                                                    id="satisfactoria" placeholder="" disabled>
+                                                    id="satisfactoria" placeholder="">
                                             </div>
                                             <div class="col">
                                                 <label for="no_satisfactoria">No satisfactoria</label><br><br>
                                                 <input type="text" name="no_satisfactoria" class="form-control"
-                                                    id="no_satisfactoria" placeholder="" disabled>
+                                                    id="no_satisfactoria" placeholder="">
                                             </div>
                                             <div class="col">
                                                 <label for="no_aplica">No aplica</label><br><br>
                                                 <input type="text" name="no_aplica" class="form-control" id="no_aplica"
-                                                    placeholder="" disabled>
+                                                    placeholder="">
                                             </div>
                                             <div class="col">
                                                 <div class="col">
                                                     <label for="ssc">SSC</label>
                                                     <input type="text" name="ssc" class="form-control" id="ssc"
-                                                        placeholder="" disabled>
+                                                        placeholder="">
                                                 </div>
                                                 <div class="col">
                                                     <label for="mir">MIR</label>
                                                     <input type="text" name="mir" class="form-control" id="mir"
-                                                        placeholder="" disabled>
+                                                        placeholder="">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-
-
                             </div>
                         </div>
                     </div>
 
+                    <!--Sección 1-->
                     <div class="card">
                         <div class="card-header" id="headingTwo">
                             <h2 class="mb-0">
@@ -213,17 +208,11 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
                             data-parent="#accordionExample">
                             <div class="card-body">
-
                                 <div class="form-group">
                                     <label for="pregunta">Pregunta de protocolo (PQ)</label>
-                                    <!-- Default switch -->
-                                    <!--<div class="form-check form-switch ">
-                                        <input class="form-check-input" type="checkbox" role="switch"
-                                            id="flexSwitchCheckDefault" onchange="cambio()"/>
-                                        <label class="form-check-label" for="flexSwitchCheckDefault">PQ Inglés</label>
-                                    </div>-->
                                     <textarea type="text" name="pregunta" class="form-control" id="pregunta"
-                                        rows="3"></textarea>
+                                        rows="3">
+                                    </textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="orientacion">Orientación para el examen de pruebas</label>
@@ -244,7 +233,7 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
                             </div>
                         </div>
                     </div>
-
+                    <!--Sección 2-->
                     <div class="card">
                         <div class="card-header" id="headingThree">
                             <h2 class="mb-0">
@@ -281,6 +270,8 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
                                 </div>
 
                                 <br>
+
+                                <!--Sección 2.1-->
                                 <p>SECCION II.I Análisis Descriptivo</p>
 
                                 <div class="form-group">
@@ -340,6 +331,7 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
                         </div>
                     </div>
 
+                    <!--Sección 3-->
                     <div class="card">
                         <div class="card-header" id="headingFour">
                             <h2 class="mb-0">
@@ -361,12 +353,12 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
                                     <div class="col">
                                         <label for="fecha_inicio_atencion">Fecha de inicio de atención a la
                                             PQ</label>
-                                        <input type="text" name="fecha_inicio_atencion" class="form-control"
+                                        <input type="date" name="fecha_inicio_atencion" class="form-control"
                                             id="fecha_inicio_atencion" placeholder="">
                                     </div>
                                     <div class="col">
                                         <label for="fecha_termino_cap">Fecha de término del CAP</label>
-                                        <input type="text" name="fecha_termino_cap" class="form-control"
+                                        <input type="date" name="fecha_termino_cap" class="form-control"
                                             id="fecha_termino_cap" placeholder="">
                                     </div>
                                     <div class="col">
@@ -419,12 +411,12 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
                                 <div class="row">
                                     <div class="col">
                                         <label for="fecha_subio_olf">Fecha en que se subió al OLF: </label>
-                                        <input type="text" name="fecha_subio_olf" class="form-control"
+                                        <input type="date" name="fecha_subio_olf" class="form-control"
                                             id="fecha_subio_olf" placeholder="">
                                     </div>
                                     <div class="col">
                                         <label for="fecha_revision_oaci">Fecha de revisión de OACI: </label>
-                                        <input type="text" name="fecha_revision_oaci" class="form-control"
+                                        <input type="date" name="fecha_revision_oaci" class="form-control"
                                             id="fecha_revision_oaci" placeholder="">
                                     </div>
                                 </div>

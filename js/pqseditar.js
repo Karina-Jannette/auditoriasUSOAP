@@ -31,22 +31,28 @@ function guardarpq(){
     let inciso =  document.getElementById("inciso").value;
     let documentos =  document.getElementById("documentos").value; 
 
-    datos= 'num_pq='+num_pq + '&area='+area + '&area_afac='+area_afac + '&elemento='+elemento + '&pregunta='+pregunta + '&orientacion='+orientacion + '&inciso='+inciso + '&documentos='+documentos + '&opcion=guardarpq' 
-    
-    //Llamado a Ajax
-    $.ajax({
-      url: "../admin/conspqs.php",
-      method: "POST",
-      data: datos
-    }).done(function(res){
-      if(res==0){
-        alert("Alta con exito");
-        setTimeout("location.href='pqs.php';",1500);
-      }else{
-        alert("error");
-        alert(res);
-      }
-    });
+    datos= 'num_pq='+num_pq + '&area='+area + '&area_afac='+area_afac + '&elemento='+elemento + '&pregunta='+pregunta + '&orientacion='+orientacion + '&inciso='+inciso + '&documentos='+documentos + '&opcion=guardarpq'
+
+    if(num_pq==""||area==""||area_afac==""||elemento==""||pregunta==""||orientacion==""||inciso==""||documentos==""){
+      alert("Campos vacios,favor de llenar todos los campos");
+      return;
+    }else{
+      //Llamado a Ajax
+      $.ajax({
+        url: "../admin/conspqs.php",
+        method: "POST",
+        data: datos
+      }).done(function(res){
+        if(res==0){
+          alert("Alta con exito");
+          setTimeout("location.href='pqs.php';",1500);
+        }else{
+          alert("error");
+          alert(res);
+        }
+      });
+
+    }
 }
 
 //función para editar
@@ -84,21 +90,26 @@ function editar_pq(){
   
   datos= 'num_pq=' + num_pq + '&area=' + area + '&area_afac=' + area_afac + '&elemento=' + elemento + '&pregunta=' + pregunta + '&orientacion=' + orientacion + '&inciso=' + inciso + '&documentos=' + documentos + '&opcion=editpqs' 
  //alert(datos);
+
+ if(num_pq==""||area==""||area_afac==""||elemento==""||pregunta==""||orientacion==""||inciso==""||documentos==""){
+  alert("Campos vacios, favor de llenar todos los campos");
+  return;
+ }else{
   //ajax
-  $.ajax({
-    type:"POST",
-    url:"../admin/conspqs.php",
-    data:datos
-  }).done(function(respuesta){
-    if (respuesta==0){
-      alert("Exito");
-      setTimeout("location.href='pqs.php';",1500);
-    }else{
-      alert("Error");
-      alert(respuesta);
-      //setTimeout("location.href='pqs.php';",1500);
-    }
-  });
+    $.ajax({
+      type:"POST",
+      url:"../admin/conspqs.php",
+      data:datos
+    }).done(function(respuesta){
+      if (respuesta==0){
+        alert("Exito");
+        setTimeout("location.href='pqs.php';",1500);
+      }else{
+        alert("Error");
+        alert(respuesta);
+      }
+    });
+ }
 }
 
 function infoEdit(editar){

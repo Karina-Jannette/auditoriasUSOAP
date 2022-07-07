@@ -37,6 +37,15 @@ function guardar_form(){
    + '&fecha_termino_cap'+fecha_termino_cap + '&porcentaje_total'+porcentaje_total + '&actividades'+actividades + '&responsable_cap'+responsable_cap 
    + '&inicio_final'+inicio_final + '&producto'+producto + '&porcentaje_cap'+porcentaje_cap + '&opcion=guardarform'
 
+   /*if(num_pq==""||area==""||elemento==""||pregunta==""||orientacion==""||inciso==""||documentos==""||fecha_inicio==""||fecha_termino==""||porcentaje==""||
+   introduccion==""||fundamentos==""||cumplimiento==""||intervenciones==""||conclusion==""||pruebas==""||responsable==""||evidencias==""||fecha_inicio_atencion==""||
+   fecha_termino_cap==""||porcentaje_total==""||actividades==""||responsable_cap==""||inicio_final==""||producto==""||porcentaje_cap==""){
+    alert("Campos vacios");
+    return;
+   }else{
+    
+   }*/
+
    $.ajax({
     url: 'guardar_formulario.php',
     method: 'POST',
@@ -53,16 +62,14 @@ function guardar_form(){
       alert(res);
     }
    });
-
 }
 
 function formllenado(){
   //alert("entra pqs");
   let numeropq= document.getElementById('num_pq').value;
-//alert(area);
+  //alert(area);
 
-
-$.ajax({
+  $.ajax({
         url: 'consult-form.php',
         type: 'POST'
     }).done(function(respuesta) {
@@ -72,6 +79,7 @@ $.ajax({
         for (Q = 0; Q < res.length; Q++) { 
             if (obj.data[Q].num_pq == numeropq){
               //area=obj.data[Q].areas;
+              document.getElementById('pq').value=obj.data[Q].num_pq;
               document.getElementById('area').value=obj.data[Q].area;
               document.getElementById('elemento').value=obj.data[Q].elemento;
               document.getElementById('pregunta').value=obj.data[Q].pregunta;

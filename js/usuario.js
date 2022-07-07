@@ -1,11 +1,3 @@
-function multiselect(){ //Función para la selección multiple en la parte de rol y áreas
-  $(document).ready(function() {
-    $('.js-example-basic-multiple').select2({
-      theme: "classic"  //pone el tema un poco mas moderno
-    });
-  });
-}
-
 function guardar(){
   //variables
   let id_rol = document.getElementById("id_rol").value;
@@ -19,7 +11,7 @@ function guardar(){
   //alert(datos);
 
   if(id_rol==""||num_empleado==""||id_area==""||nombre==""||apellido==""||pass==""){
-    alert("Campos vacios");
+    alert("Campos vacios, favor de llenar todos los campos");
     return;
   }else{
     $.ajax({
@@ -75,20 +67,25 @@ function editUsuario(){
   datos=  'id_rol='+id_rol + '&num_empleado='+num_empleado + '&id_area='+id_area + '&nombre='+nombre + '&apellido='+apellido + '&opcion=editUsuario'
   //alert (datos);
 
-  //AJAX
-  $.ajax({
-    type: "POST",
-    url: "../admin/insertarUsuario.php",
-    data: datos
-  }).done(function(respuesta){
-    if(respuesta==0){
-      alert("Usuario editado");
-      setTimeout("location.href='usuario.php';",1200);
-    }else{
-      alert(respuesta);
-      alert("Error");
-    }
-  })
+  if(id_rol==""||num_empleado==""||id_area==""||nombre==""||apellido==""){
+    alert("Campos vacios, favor de llenar todos los campos");
+    return;
+  }else{
+    //AJAX
+    $.ajax({
+      type: "POST",
+      url: "../admin/insertarUsuario.php",
+      data: datos
+    }).done(function(respuesta){
+      if(respuesta==0){
+        alert("Usuario editado");
+        setTimeout("location.href='usuario.php';",1200);
+      }else{
+        alert(respuesta);
+        alert("Error");
+      }
+    });
+  }
 }
 
 $(document).ready(function(){

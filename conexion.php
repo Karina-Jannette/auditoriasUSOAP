@@ -1,13 +1,13 @@
 <?php 
-     /*$servidor= "localhost";
+     $servidor= "localhost";
      $usuario= "root";
      $password= "";
-     $bd= "auditoria";*/
+     $bd= "auditoria";
 
-    $servidor= "localhost";
+    /*$servidor= "localhost";
     $usuario= "u683645102_root_usoap";
     $password= "Agencia.SCT.2021";
-    $bd= "u683645102_usoap";
+    $bd= "u683645102_usoap";*/
     $conexion= mysqli_connect($servidor,$usuario,$password,$bd);
     return $conexion;
     
