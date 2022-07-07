@@ -15,7 +15,7 @@ function guardar(){
     return;
   }else{
     $.ajax({
-      url: "../admin/insertarUsuario.php",
+      url: "../admin/insertarusuario.php",
       method: "POST",
       data: datos
     }).done(function(res){
@@ -76,7 +76,7 @@ function editUsuario(){
     //AJAX
     $.ajax({
       type: "POST",
-      url: "../admin/insertarUsuario.php",
+      url: "../admin/insertarusuario.php",
       data: datos
     }).done(function(respuesta){
       if(respuesta==0){
