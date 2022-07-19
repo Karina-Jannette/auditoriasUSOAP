@@ -1,8 +1,9 @@
 <?php
-// Mandamos llamar nuestra BD
-include 'conexion.php';
-include_once ("validar_sesion.php");
-$resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
+    // Mandamos llamar nuestra BD
+    include 'conexion.php';
+    include_once ("validar_sesion.php");
+    $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
+    $result = $conexion->query("SELECT * from ssc")or die($conexion->error);
 ?>
 
 <!DOCTYPE html>
@@ -19,9 +20,6 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
     <!-- Site Metas -->
     <title>AUDITORIAS USOAP</title>
     <link rel="shortcut icon" href="images/afac_logo.png">
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
     <!-- Site Icons -->
     <link rel="shortcut icon" href="#" type="image/x-icon" />
@@ -158,17 +156,17 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
                                             <div class="col">
                                                 <label for="sin_contestar">Sin contestar</label><br><br>
                                                 <input type="text" name="sin_contestar" class="form-control"
-                                                    id="sin_contestar" placeholder="">
+                                                    id="sin_contestar">
                                             </div>
                                             <div class="col">
                                                 <label for="satisfactoria">Satisfactoria</label><br><br>
                                                 <input type="text" name="satisfactoria" class="form-control"
-                                                    id="satisfactoria" placeholder="">
+                                                    id="satisfactoria">
                                             </div>
                                             <div class="col">
                                                 <label for="no_satisfactoria">No satisfactoria</label><br><br>
                                                 <input type="text" name="no_satisfactoria" class="form-control"
-                                                    id="no_satisfactoria" placeholder="">
+                                                    id="no_satisfactoria">
                                             </div>
                                             <div class="col">
                                                 <label for="no_aplica">No aplica</label><br><br>
@@ -176,10 +174,16 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
                                                     placeholder="">
                                             </div>
                                             <div class="col">
-                                                <div class="col">
-                                                    <label for="ssc">SSC</label>
-                                                    <input type="text" name="ssc" class="form-control" id="ssc"
-                                                        placeholder="">
+                                                <label for="ssc">SSC</label>
+                                                <div class="input-group mb-3">
+                                                    <input type="search" class="form-control" name="ssc" id="ssc">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-outline-secondary btn-warning"
+                                                            type="button" data-toggle="modal" data-target="#modalSSC"
+                                                            id="infor" name="info" onclick="detalles()"><i
+                                                                class="fa fa-info"></i>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                                 <div class="col">
                                                     <label for="mir">MIR</label>
@@ -210,8 +214,7 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="pregunta">Pregunta de protocolo (PQ)</label>
-                                    <textarea type="text" name="pregunta" class="form-control" id="pregunta"
-                                        rows="3">
+                                    <textarea type="text" name="pregunta" class="form-control" id="pregunta" rows="3">
                                     </textarea>
                                 </div>
                                 <div class="form-group">
@@ -433,6 +436,36 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
                 </div>
 
             </form>
+
+            <!--Modal de información SSC-->
+            <!-- Vertically centered scrollable modal -->
+            <div class="modal fade" id="modalSSC" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Información</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <?php
+                                $res= $conexion->query("select * from ssc");
+                                while($fila=mysqli_fetch_array($res)){
+                                    echo '<option value="'.$fila['seriacion'].'">'.$fila['detalles'].'</option>';
+                                }
+                            ?>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                            <!--<button type="button" class="btn btn-primary">Understood</button>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </div>
     <!-- end section -->

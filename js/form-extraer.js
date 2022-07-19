@@ -1,5 +1,5 @@
 function guardar_form(){
-  alert ("entrar guardar");
+  //alert ("entrar guardar");
    let num_pq = document.getElementById("num_pq").value;
    let area = document.getElementById("area").value;
    let elemento = document.getElementById("elemento").value;
@@ -70,23 +70,42 @@ function formllenado(){
   //alert(area);
 
   $.ajax({
-        url: 'consult-form.php',
-        type: 'POST'
-    }).done(function(respuesta) {
-        obj = JSON.parse(respuesta);
-        let res = obj.data;
-        let x = 0;
-        for (Q = 0; Q < res.length; Q++) { 
-            if (obj.data[Q].num_pq == numeropq){
-              //area=obj.data[Q].areas;
-              document.getElementById('pq').value=obj.data[Q].num_pq;
-              document.getElementById('area').value=obj.data[Q].area;
-              document.getElementById('elemento').value=obj.data[Q].elemento;
-              document.getElementById('pregunta').value=obj.data[Q].pregunta;
-              document.getElementById('orientacion').value=obj.data[Q].orientacion;
-              document.getElementById('inciso').value=obj.data[Q].inciso;
-              document.getElementById('documentos').value =obj.data[Q].documentos;
-            }
-        }
-    });
+    url: 'consult-form.php',
+    type: 'POST'
+  }).done(function(respuesta) {
+    obj = JSON.parse(respuesta);
+    let res = obj.data;
+    let x = 0;
+    for (Q = 0; Q < res.length; Q++) { 
+      if (obj.data[Q].num_pq == numeropq){
+        //area=obj.data[Q].areas;
+        document.getElementById('pq').value=obj.data[Q].num_pq;
+        document.getElementById('area').value=obj.data[Q].area;
+        document.getElementById('elemento').value=obj.data[Q].elemento;
+        document.getElementById('pregunta').value=obj.data[Q].pregunta;
+        document.getElementById('orientacion').value=obj.data[Q].orientacion;
+        document.getElementById('inciso').value=obj.data[Q].inciso;
+        document.getElementById('documentos').value =obj.data[Q].documentos;
+      }
+    }
+  });
+}
+
+function detalles(){
+  alert("info ssc");
+  let informacion= document.getElementById('ssc').value;
+  //alert(informacion);
+
+  $.ajax({
+    url: 'consult_ssc.php',
+    type: 'POST'
+  }).done(function(respuesta) {
+    obj = JSON.parse(respuesta);
+    let res = obj.data
+    for (Q = 0; Q < res.length; Q++) { 
+      if (obj.data[Q].seriacion == informacion){
+        document.getElementById('#modalSSC').value=obj.data[Q].detalles;
+      }
+    }
+  });
 }

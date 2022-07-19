@@ -5,7 +5,7 @@ include_once ("validar_sesion.php");
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <!-- Basic -->
 
 <head>
