@@ -2,7 +2,7 @@
     session_start();
     require_once "../conexion.php";
 
-    $resultado = $conexion->query("SELECT * from anexos")or die ($conexion->error);
+    $resultado2 = $conexion->query("SELECT * from fracciones")or die ($conexion->error);
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anexos</title>
+    <title>Fracciones</title>
     <link rel="shortcut icon" href="../images/afac_logo.png">
 
     <!-- Google Font: Source Sans Pro -->
@@ -47,7 +47,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-2">Anexos</h1>
+                            <h1 class="m-2">Fracciones</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6 text-right">
                             <button type="button" class="btn btn-primary" data-toggle="modal"
@@ -63,10 +63,10 @@
             <div class="menu">
                 <ul class="nav nav-tabs justify-content-center">
                     <li class="nav-item">
-                        <a class="nav-link anexos active" id="menanexos" href="anexos.php" type="button">Anexos</a>
+                        <a class="nav-link anexos" id="menanexos" href="anexos.php" type="button">Anexos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fracciones" id="menfracciones" href="fracciones.php" type="button">Fracciones</a>
+                        <a class="nav-link fracciones active" id="menfracciones" href="fracciones.php" type="button">Fracciones</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link sub_fracciones" id="mensub_fraccion" href="sub.php" type="button">Sub
@@ -79,11 +79,13 @@
             <section class="content">
                 <div class="container-fluid">
                     <div class="card">
-                        <div class="card-body" id="tabla_anexo">
-                            <table id="tablaAnexo" class="table table-bordered table-striped">
+                        
+                        <!--Inicio tabla Fra-->
+                        <div class="card-body" id="tabla_fra">
+                            <table id="tablaFra" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Anexo</th>
+                                        <th>Fraccion</th>
                                         <th>Descripción</th>
                                         <th>Área</th>
                                         <th>Área AFAC</th>
@@ -95,30 +97,30 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                        while($fila= mysqli_fetch_array($resultado)){
+                                        while($fila= mysqli_fetch_array($resultado2)){
                                     ?>
                                     <tr>
-                                        <td><?php echo $fila['num_anexo'];?></td>
-                                        <td><?php echo $fila['detalles'];?></td>
-                                        <td><?php echo $fila['area'];?></td>
-                                        <td><?php echo $fila['area_afac'];?></td>
-                                        <td><?php echo $fila['incisos'];?></td>
-                                        <td><?php echo $fila['notas'];?></td>
+                                        <td><?php echo $fila['num_fraccion'];?></td>
+                                        <td><?php echo $fila['detalles_fra'];?></td>
+                                        <td><?php echo $fila['aread'];?></td>
+                                        <td><?php echo $fila['area_afacd'];?></td>
+                                        <td><?php echo $fila['incisos_fra'];?></td>
+                                        <td><?php echo $fila['notas_fra'];?></td>
 
-                                        <td><button class="btn btn-success btnEditarAnexo"
-                                                data-target="#modalEditarAnexo" data-toggle="modal"
-                                                onclick="editarAnexo(<?php echo $fila['id_anexo'];?>)"><i
+                                        <td><button class="btn btn-success btnEditarFra" data-target="#EditarFraccion"
+                                                data-toggle="modal"
+                                                onclick="editarFra(<?php echo $fila['id_fraccion'];?>)"><i
                                                     class="fa fa-edit"></i></button></td>
 
-                                        <td><button class="btn btn-danger EliminarAnexo" data-toggle="modal"
-                                                onclick="eliminarAnexo(<?php echo $fila['id_anexo'];?>)"
-                                                data-target="#modalEliminar"><i class="fa fa-trash"></i></button></td>
+                                        <td><button class="btn btn-danger EliminarFra" data-toggle="modal"
+                                                onclick="eliminarFra(<?php echo $fila['id_fraccion'];?>)"
+                                                data-target="#EliminarFra"><i class="fa fa-trash"></i></button></td>
                                     </tr>
                                     <?php } ?>
                                 </tbody>
                             </table>
                         </div>
-                        <!-- /.card-body tabla anexos -->
+                        <!--Fin tabla fracción-->
                     </div>
                 </div>
             </section>
@@ -393,7 +395,8 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-success" onclick="editarsub()">Guardar cambios</button>
+                                <button type="button" class="btn btn-success" onclick="editarsub()">Guardar
+                                    cambios</button>
                             </div>
                         </form>
                     </div>
@@ -421,81 +424,7 @@
                 </div>
             </div>
 
-            <!-- Modal Editar Anexo -->
-            <div class="modal fade" id="modalEditarAnexo" tabindex="-1" aria-labelledby="modalEditarLabel"
-                aria-hidden="true" data-backdrop="static" data-keyboard="false">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <form method="POST" enctype="multipart/form-data">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modalEditarLabel">Actualizar anexo</h5>
-                            </div>
-                            <div class="modal-body">
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <div class="col-md-3 form-group">
-                                            <label for="num_anexo">Anexo</label>
-                                            <input type="text" class="form-control" onchange="todopruebas()"
-                                                id="num_anexoEdit" name="num_anexoEdit" placeholder="Núm. Anexo"
-                                                required disabled>
-                                        </div>
-                                        <div class="col form-group">
-                                            <label for="detalles">Detalles</label>
-                                            <textarea name="detallesEdit" id="detallesEdit" class="form-control"
-                                                required></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col form-group">
-                                            <label for="area">Área asignada</label>
-                                            <select class="js-example-basic-multiple" name="area[]" id="areaEdit"
-                                                multiple="multiple" style="width: 100%" required>
-                                                <!--Se le pone plugin para selección multiple-->
-                                                <?php
-                                                    $res= $conexion->query("select * from  areas");
-                                                    while($fila=mysqli_fetch_array($res)){
-                                                        echo '<option value="'.$fila['areas'].'">'.$fila['areas'].'</option>';
-                                                    }
-                                                ?>
-                                            </select>
-                                        </div>
-                                        <div class="col form-group">
-                                            <label for="area_afac">Área AFAC</label>
-                                            <select class="js-example-basic-multiple" name="area_afac[]"
-                                                id="area_afacEdit" multiple="multiple" style="width: 100%" required>
-                                                <!--Se le pone plugin para selección multiple-->
-                                                <?php
-                                                    $res= $conexion->query("select * from  areas_afac");
-                                                    while($fila=mysqli_fetch_array($res)){
-                                                        echo '<option value="'.$fila['area'].'">'.$fila['area'].'</option>';
-                                                    }
-                                                ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="incisos">Incisos</label>
-                                        <textarea name="incisos" id="incisosEdit" class="form-control" id="incisosEdit"
-                                            required></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="notas">Notas</label>
-                                        <textarea name="notas" class="form-control" id="notasEdit" required></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                                <button type="button" onclick="editAnexo()" class="btn btn-success editar">Actualizar
-                                    </buttton>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
             <!--Modal editar Fracción-->
-
             <div class="modal fade" id="EditarFraccion" tabindex="-1" aria-labelledby="modalEditarLabel"
                 aria-hidden="true" data-backdrop="static" data-keyboard="false">
                 <div class="modal-dialog modal-lg" role="document">
@@ -509,7 +438,7 @@
                                     <div class="row">
                                         <div class="col-md-3 form-group">
                                             <label for="num_anexo">Fracción</label>
-                                            <input type="text" class="form-control" id="fraEdit" name="fraEdit" 
+                                            <input type="text" class="form-control" id="fraEdit" name="fraEdit"
                                                 placeholder="Núm. Anexo" required disabled>
                                         </div>
                                         <div class="col form-group">
@@ -553,18 +482,20 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="notas">Notas</label>
-                                        <textarea name="notasFra" class="form-control" id="notasFra" required></textarea>
+                                        <textarea name="notasFra" class="form-control" id="notasFra"
+                                            required></textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                                <button type="button" onclick="editFra()" class="btn btn-success editar">Actualizar</buttton>
+                                <button type="button" onclick="editFra()" class="btn btn-success editar">Actualizar
+                                    </buttton>
                             </div>
                         </form>
                     </div>
                 </div>
-            </div> 
+            </div>
             <!--Fin modal editar Fracción-->
 
             <!--Modal Eliminar Fracción-->
@@ -587,7 +518,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
         <?php include "./layouts/footer.php";?>
     </div>
@@ -609,13 +540,12 @@
     <!--SCRIPT de diseño-->
     <script>
     $(document).ready(function() {
-        $('#tablaAnexo').DataTable({
+        $('#tablaFra').DataTable({
             "scrollX": true,
             "responsive": true,
             "autoWidth": false
         });
     });
-
     </script>
     <script>
     multiselect();
@@ -633,6 +563,6 @@
         document.getElementById('subfracciones').style.display = 'block';
     }
     </script>
-</body>
 
+</body>
 </html>

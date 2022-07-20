@@ -1,7 +1,7 @@
 <?php
-    include("../conexion.php");
+    include("../../conexion.php");
     session_start();
-    $query = "SELECT * FROM sub_fracciones ORDER BY id_sub";
+    $query = "SELECT * FROM usuarios ORDER BY id_usuario";
     $resultado = mysqli_query($conexion, $query);
 
     if(!$resultado){

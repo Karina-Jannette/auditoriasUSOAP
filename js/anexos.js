@@ -75,7 +75,7 @@ function guardar(){
   }else{
     //Llamado a Ajax
     $.ajax({
-      url: 'guardar_anexo.php',
+      url: '../admin/consultas/guardar_anexo.php',
       method: 'POST',
       data: datos
     }).done(function(res){
@@ -101,7 +101,7 @@ function confeliminarAnexo(eliminar){
   var elimAnexo = document.getElementById("id_anexodel").value;
   datos = 'id_anexo=' + elimAnexo +'&opcion=eliminarAnexo'
   $.ajax({
-    url: 'guardar_anexo.php',
+    url: '../admin/consultas/guardar_anexo.php',
     method: 'POST',
     data: datos
   }).done(function(res){
@@ -119,7 +119,7 @@ function confeliminarAnexo(eliminar){
 function editarAnexo(editar){
   //alert(editar);
   $.ajax({
-    url: '../admin/cons_anexo.php',
+    url: '../admin/consultas/cons_anexo.php',
     type: 'GET'
   }).done(function(resp){
     obj = JSON.parse(resp);
@@ -184,7 +184,7 @@ function editAnexo(){
   //AJAX
   $.ajax({
     type:"POST",
-    url: "../admin/guardar_anexo.php",
+    url: "../admin/consultas/guardar_anexo.php",
     data: datos
   }).done(function(respuesta){
     if(respuesta==0){
@@ -201,7 +201,7 @@ function editAnexo(){
 function editarFra(fraccion){
   //alert(fraccion);
   $.ajax({
-    url: '../admin/cons_fraccion.php',
+    url: '../admin/consultas/cons_fraccion.php',
     type: 'GET'
   }).done(function(resp){
     obj = JSON.parse(resp);
@@ -268,7 +268,7 @@ function editFra(){
   //AJAX
   $.ajax({
     type:"POST",
-    url: "../admin/guardar_fra.php",
+    url: "../admin/consultas/guardar_fra.php",
     data: datos
   }).done(function(respuesta){
     if(respuesta==0){
@@ -290,7 +290,7 @@ function elimFra(elimFra){
   var eliminarFra = document.getElementById("elimFra").value;
   datos = 'id_fraccion=' + eliminarFra + '&opcion=eliminarFra'
   $.ajax({
-    url: '../admin/guardar_fra.php',
+    url: '../admin/consultas/guardar_fra.php',
     method: 'POST',
     data: datos
   }).done(function(res){
@@ -310,7 +310,7 @@ function todopruebas(){
   let anexo = document.getElementById("num_anexo").value;
 
     $.ajax({
-      url: '../admin/data_subfrac.php',
+      url: '../admin/consultas/data_subfrac.php',
       type: 'POST'
     }).done(function(resp) {
       obj = JSON.parse(resp);
@@ -392,7 +392,7 @@ function editarsub(){
     //AJAX
     $.ajax({
       type:'POST',
-      url:"../admin/guardar_sub.php",
+      url:"../admin/consultas/guardar_sub.php",
       data:datos
     }).done(function(respuesta){
       if(respuesta==0){
@@ -414,7 +414,7 @@ function editarsub(){
 function editSub(sub){
   //alert(sub);
   $.ajax({
-    url: '../admin/cons_sub.php',
+    url: '../admin/consultas/cons_sub.php',
     type: 'GET'
   }).done(function(resp){
     obj = JSON.parse(resp);
@@ -451,7 +451,7 @@ function eliminarsub(eliminar){
   var idEliminar = eliminar;
   datos= 'id_sub=' + idEliminar + '&opcion=eliminarsub'
     $.ajax({
-      url: 'guardar_sub.php',
+      url: '../admin/consultas/guardar_sub.php',
       method:'POST',
       data:datos
     }).done(function(res){
@@ -507,7 +507,7 @@ function guardarsub(){
     return;
   }else{
     $.ajax({
-      url: 'guardar_sub.php',
+      url: '../admin/consultas/guardar_sub.php',
       method: 'POST',
       data: datos
     }).done(function(res){
@@ -532,61 +532,4 @@ function guardarsub(){
       }
     });
   }
-}
-
-function mos_anexo() {
-  document.getElementById('tabla_anexo').style.display = 'block';
-}
-function ocul_anexo() {
-    document.getElementById('tabla_anexo').style.display = 'none';
-}
-
-function mos_fra() {
-  document.getElementById('tabla_fra').style.display = 'block';
-}
-function ocul_fra() {
-    document.getElementById('tabla_fra').style.display = 'none';
-}
-
-function mos_sub() {
-  document.getElementById('tabla_sub').style.display = 'block';
-}
-function ocul_sub() {
-    document.getElementById('tabla_sub').style.display = 'none';
-}
-
-function mostrar_ocultar(){
-  var select = document.getElementById("tabla_anexo");
-  if (select.style.display == "none"){
-    mos_anexo();
-    ocul_fra();
-    ocul_sub();
-  }else{
-    ocul_fra();
-    ocul_sub();
-  }  
-}
-
-function mos_oculFra(){
-  var sel2 = document.getElementById("tabla_fra");
-  if (sel2.style.display == "none") {
-    mos_fra();
-    ocul_anexo();
-    ocul_sub();
-  }else{
-    ocul_fra();
-  }
-
-}
-
-function mos_oculSub(){
-  var sel3 = document.getElementById("tabla_sub");
-  if (sel3.style.display == "none") {
-    mos_sub();
-    ocul_fra();
-    ocul_anexo();
-  }else{
-    ocul_sub();
-  }
-
 }

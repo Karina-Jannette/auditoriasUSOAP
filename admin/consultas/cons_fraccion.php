@@ -1,7 +1,7 @@
 <?php
-    include("../conexion.php");
+    include("../../conexion.php");
     session_start();
-    $query = "SELECT * FROM anexos ORDER BY id_anexo";
+    $query = "SELECT * FROM fracciones ORDER BY id_anexo";
     $resultado = mysqli_query($conexion, $query);
 
     if(!$resultado){

@@ -23,9 +23,11 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="./layouts/css/adminlte.min.css">
-    <!--Tabla-->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />   
+    <!-- DataTables -->
+    <link rel="stylesheet" href="../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <!--Multiselect-->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -84,22 +86,22 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <td>Número de PQ</td>
-                                        <td>Área de auditoría</td>
-                                        <td>Área AFAC</td>
-                                        <td>Elemento critico</td>
-                                        <td>Pregunta de protocolo (PQ)</td>
-                                        <td>Orientación para el examen de pruebas</td>
-                                        <td>Incisos</td>
-                                        <td>Documentos de referencia</td>
-                                        <td>Editar</td>
-                                        <td>Eliminar</td>
+                                        <th>Número de PQ</th>
+                                        <th>Área de auditoría</th>
+                                        <th>Área AFAC</th>
+                                        <th>Elemento critico</th>
+                                        <th>Pregunta de protocolo (PQ)</th>
+                                        <th>Orientación para el examen de pruebas</th>
+                                        <th>Incisos</th>
+                                        <th>Documentos de referencia</th>
+                                        <th>Editar</th>
+                                        <th>Eliminar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                            while($fila= mysqli_fetch_array($resultado)){
-                          ?>
+                                        while($fila= mysqli_fetch_array($resultado)){
+                                    ?>
                                     <tr>
                                         <td><?php echo $fila['num_pq'];?></td>
                                         <td><?php echo $fila['area'];?></td>
@@ -339,7 +341,9 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
     <script>
     $(document).ready(function() {
         $('#example1').DataTable({
-            "scrollX": true
+            "scrollX": true,
+            "responsive": true,
+            "autoWidth": false
         });
         //Selección multiple
         $('.js-example-basic-multiple').select2({

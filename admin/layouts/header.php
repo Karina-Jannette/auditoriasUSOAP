@@ -37,7 +37,7 @@
     <div class="wrapper">
 
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-cyan navbar-light">
+        <nav class="main-header navbar navbar-expand navbar navbar-light">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -188,8 +188,9 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="./areauditoria.php" class="nav-link">
-                                        <i class='fas fa-edit'></i>
-                                        <p>Alta - Areas AFAC</p>
+                                        <i class='fas fa-list'></i>
+                                        <!--<i class='fas fa-edit'></i>-->
+                                        <p>Areas AFAC</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -226,14 +227,14 @@
 
                         <li class="nav-header">EXTRAS</li>
                         <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link active">
+                            <a href="./anexos.php" class="nav-link active">
                                 <i class="nav-icon fa fa-table"></i>
                                 <p>
                                     Anexos
-                                    <i class="right fas fa-angle-left"></i>
+                                    <!--<i class="right fas fa-angle-left"></i>-->
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
+                            <!--<ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="./alta_anexos.php" class="nav-link">
                                         <i class='fas fa-edit'></i>
@@ -246,7 +247,7 @@
                                         <p>Listado Anexos</p>
                                     </a>
                                 </li>
-                            </ul>
+                            </ul>-->
                         </li>
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link active">
@@ -303,6 +304,15 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link active">
+                                <i class="fas fa-clipboard-list"></i>
+                                <p>
+                                    Historial
+                                </p>
+                            </a>
+                        </li>
+                        
 
                         <li class="nav-header">SESIÓN</li>
                         <li class="nav-item">
@@ -310,7 +320,6 @@
                                 <i class="fas fa-window-close"></i>
                                 <p>
                                     Cerrar Sesión
-                                    <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
                         </li>

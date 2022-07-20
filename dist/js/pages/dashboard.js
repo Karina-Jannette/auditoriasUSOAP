@@ -28,7 +28,7 @@ $(function () {
   })
 
   // bootstrap WYSIHTML5 - text editor
-  $('.textarea').summernote()
+  // QUITAR SI SE UTILIZA $('.textarea').summernote()
 
   $('.daterange').daterangepicker({
     ranges   : {
