@@ -11,7 +11,7 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PQ</title>
+    <title>PQ's</title>
     <link rel="shortcut icon" href="../images/afac_logo.png">
 
     <!-- Google Font: Source Sans Pro -->
@@ -84,7 +84,7 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <td>PQ</td>
+                                        <td>Número de PQ</td>
                                         <td>Área de auditoría</td>
                                         <td>Área AFAC</td>
                                         <td>Elemento critico</td>
