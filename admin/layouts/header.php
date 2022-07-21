@@ -202,7 +202,7 @@
                             </ul>
                         </li>
                         <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link active">
+                            <a href="./elementos.php" class="nav-link active">
                                 <i class="nav-icon fa fa-table"></i>
                                 <p>
                                     Elemento critico
@@ -291,13 +291,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="./index.html" class="nav-link">
+                                    <a href="#" class="nav-link">
                                         <i class="fas fa-file-alt"></i>
                                         <p>Planes de acción</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pqs.php" class="nav-link">
+                                    <a href="#" class="nav-link">
                                         <i class="fas fa-address-book"></i>
                                         <p>Personal responsable</p>
                                     </a>
@@ -305,8 +305,8 @@
                             </ul>
                         </li>
                         <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link active">
-                                <i class="fas fa-clipboard-list"></i>
+                            <a href="./historial.php" class="nav-link active">
+                                <i class="fas fa-history"></i>
                                 <p>
                                     Historial
                                 </p>
