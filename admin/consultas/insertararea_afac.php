@@ -1,5 +1,5 @@
 <?php
-require_once "../conexion.php";
+require_once "../../conexion.php";
 
 if(isset($_POST['area']) ){
 
@@ -12,11 +12,11 @@ if(isset($_POST['area']) ){
               )
             ")or die($conexion->error);
 
-            header("Location: areauditoria.php?success");
+            header("Location: ../area_afac.php?success");
 
 
 }else{
-    header("Location: areauditoria.php?error=Favor de llenar todos los campos");
+    header("Location: ../area_afac.php?error=Favor de llenar todos los campos");
 }
 
 ?>

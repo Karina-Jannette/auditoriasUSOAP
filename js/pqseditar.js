@@ -39,7 +39,7 @@ function guardarpq(){
     }else{
       //Llamado a Ajax
       $.ajax({
-        url: "../admin/conspqs.php",
+        url: "../admin/consultas/conspqs.php",
         method: "POST",
         data: datos
       }).done(function(res){
@@ -101,7 +101,7 @@ function editar_pq(){
   //ajax
     $.ajax({
       type:"POST",
-      url:"../admin/conspqs.php",
+      url:"../admin/consultas/conspqs.php",
       data:datos
     }).done(function(respuesta){
       if (respuesta==0){
@@ -117,7 +117,7 @@ function editar_pq(){
 
 function infoEdit(editar){
   $.ajax({
-    url: "../admin/consultpqs.php",
+    url: "../admin/consultas/consultpqs.php",
     type: "GET"
   }).done(function(resp){
     obj = JSON.parse(resp);
@@ -158,7 +158,7 @@ $(document).ready(function(){
   });
   $(".eliminar").click(function(){
     $.ajax({
-      url: 'eliminarpq.php',
+      url: '../admin/consultas/eliminarpq.php',
       method: 'POST',
       data:{
         id:idEliminar

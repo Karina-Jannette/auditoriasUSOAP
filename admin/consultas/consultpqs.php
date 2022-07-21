@@ -1,5 +1,5 @@
 <?php
-    include("../conexion.php");
+    include("../../conexion.php");
     session_start();
     $query = "SELECT * FROM pqs ORDER BY id_pq";
     $resultado = mysqli_query($conexion, $query);

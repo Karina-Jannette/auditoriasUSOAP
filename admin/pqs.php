@@ -336,7 +336,6 @@ $resultado = $conexion->query("SELECT * from pqs")or die ($conexion->error);
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
     <!-- Agregar, Editar y Eliminar -->
     <script src="../js/pqseditar.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
     $(document).ready(function() {

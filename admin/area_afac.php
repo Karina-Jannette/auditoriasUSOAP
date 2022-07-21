@@ -1,10 +1,8 @@
 <?php
-session_start();
-require_once "../conexion.php";
+    session_start();
+    require_once "../conexion.php";
 
-$resultado = $conexion->query("SELECT * from areas")or die ($conexion->error);
-$resul = $conexion->query("SELECT * from areas_afac")or die ($conexion->error);
-
+    $resul = $conexion->query("SELECT * from areas_afac")or die ($conexion->error);
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +11,7 @@ $resul = $conexion->query("SELECT * from areas_afac")or die ($conexion->error);
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Áreas</title>
+    <title>Áreas AFAC</title>
     <link rel="shortcut icon" href="../images/afac_logo.png">
 
     <!-- Google Font: Source Sans Pro -->
@@ -40,7 +38,7 @@ $resul = $conexion->query("SELECT * from areas_afac")or die ($conexion->error);
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-2">Área de auditoría</h1>
+                            <h1 class="m-2">Áreas de auditoría AFAC</h1>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
@@ -69,72 +67,7 @@ $resul = $conexion->query("SELECT * from areas_afac")or die ($conexion->error);
                     <?php  } ?>
 
 
-                    <!--Áreas auditoría-->
-                    <div id="accordion">
-                        <div class="card">
-                            <div class="card-header" id="headingOne">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
-                                        aria-expanded="false" aria-controls="collapseOne">
-                                        Áreas de auditoría
-                                    </button>
-                                </h5>
-                            </div>
-
-                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-                                data-parent="#accordion">
-                                <div class="card-body">
-                                    <div class="card-body text-right">
-                                        <button type="button" class="btn btn-primary" data-toggle="modal"
-                                            data-target="#exampleModal1">
-                                            <i class="fa fa-plus mr-2"></i>Registrar Área de auditoría
-                                        </button>
-                                    </div><!-- /.col -->
-
-                                    <!-- Muestra la tabla, con sus apartados y datos -->
-                                    <div class="card-body">
-                                        <table id="example1" class="table table-bordered table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <td>Id Area</td>
-                                                    <td>Área de auditoría:</td>
-                                                    <td>Editar</td>
-                                                    <td>Eliminar</td>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
-                                                    while($fila= mysqli_fetch_array($resultado)){
-                                                ?>
-                                                <tr>
-                                                    <td><?php echo $fila['id_area'];?></td>
-                                                    <td><?php echo $fila['areas'];?></td>
-
-                                                    <td><button class="btn btn-success btnEditar"
-                                                            data-id="<?php echo $fila['id_area'];?>"
-                                                            data-areas="<?php echo $fila['areas'];?>"
-                                                            data-toggle="modal" data-target="#modalEditar1">
-                                                            <i class="fa fa-edit"></i></button></td>
-
-                                                    <td><button class="btn btn-danger btnEliminar"
-                                                            data-id="<?php echo $fila['id_area'];?>" data-toggle="modal"
-                                                            data-target="#modalEliminar1">
-                                                            <i class="fa fa-trash"></i></button></td>
-
-                                                </tr>
-                                                <?php } ?>
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <!-- /.card-body -->
-                                </div>
-                            </div>
-                        </div>
-
-
                         <!--Áreas AFAC-->
-
                         <div class="card">
                             <div class="card-header" id="headingTwo">
                                 <h5 class="mb-0">
@@ -145,7 +78,7 @@ $resul = $conexion->query("SELECT * from areas_afac")or die ($conexion->error);
                                 </h5>
                             </div>
 
-                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                            <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
                                 data-parent="#accordion">
                                 <div class="card-body">
                                     <!-- Muestra la tabla, con sus apartados y datos -->
@@ -159,10 +92,10 @@ $resul = $conexion->query("SELECT * from areas_afac")or die ($conexion->error);
                                         <table id="example1" class="table table-bordered table-striped">
                                             <thead>
                                                 <tr>
-                                                    <td>Id Area</td>
-                                                    <td>Área de auditoría:</td>
-                                                    <td>Editar</td>
-                                                    <td>Eliminar</td>
+                                                    <th>Id Area</th>
+                                                    <th>Área de auditoría:</th>
+                                                    <th>Editar</th>
+                                                    <th>Eliminar</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -186,7 +119,6 @@ $resul = $conexion->query("SELECT * from areas_afac")or die ($conexion->error);
 
                                                 </tr>
                                                 <?php } ?>
-
                                             </tbody>
                                         </table>
                                     </div>
@@ -200,38 +132,11 @@ $resul = $conexion->query("SELECT * from areas_afac")or die ($conexion->error);
             <!-- /.content -->
         </div>
 
-
-        <!-- Modal Registrar1-->
-        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <form action="./insertarareauditoria.php" method="POST" enctype="multipart/form-data">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Registrar Área de auditoría</h5>
-                            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="areas">Área de auditoría</label>
-                                <input type="text" name="areas" placeholder="areas" id="areas" class="form-control"
-                                    required>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" class="btn btn-primary">Guardar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- Modal registro 2                                            -->
+        <!-- Modal registro área AFAC-->
         <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <form action="./insertararea_afac.php" method="POST" enctype="multipart/form-data">
+                    <form action="./consultas/insertararea_afac.php" method="POST" enctype="multipart/form-data">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Registrar Área AFAC</h5>
                             <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
@@ -253,28 +158,8 @@ $resul = $conexion->query("SELECT * from areas_afac")or die ($conexion->error);
                 </div>
             </div>
         </div>
-        <!-- Modal Eliminar -->
-        <div class="modal fade" id="modalEliminar1" tabindex="-1" aria-labelledby="modalEliminarLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalEliminarLabel">Eliminar Área de auditoría</h5>
-                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        ¿Desea eliminar a esta Área de auditoría?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-danger eliminar" data-dismiss="modal">Eliminar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal Eliminar 2 -->
+
+        <!-- Modal Eliminar-->
         <div class="modal fade" id="modalEliminar2" tabindex="-1" aria-labelledby="modalEliminarLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -295,38 +180,12 @@ $resul = $conexion->query("SELECT * from areas_afac")or die ($conexion->error);
                 </div>
             </div>
         </div>
-        <!-- Modal Editar 1 -->
-        <div class="modal fade" id="modalEditar1" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <form action="editarareauditoria.php" method="POST" enctype="multipart/form-data">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalEditarLabel">Actualizar datos área</h5>
-                            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <input type="hidden" id="idEdit" name="idEdit" class="form-control">
-                            <div class="form-group">
-                                <label for="areas">Área de auditoría</label>
-                                <input type="text" name="areas" placeholder="areas" id="areas1" class="form-control"
-                                    required>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" class="btn btn-primary editar">Actualizar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- Modal Editar 2-->
+        
+        <!-- Modal Editar-->
         <div class="modal fade" id="modalEditar2" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <form action="editar_areaAfac.php" method="POST" enctype="multipart/form-data">
+                    <form action="./consultas/editar_areaAfac.php" method="POST" enctype="multipart/form-data">
                         <div class="modal-header">
                             <h5 class="modal-title" id="modalEditarLabel">Actualizar datos área</h5>
                             <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
@@ -352,7 +211,6 @@ $resul = $conexion->query("SELECT * from areas_afac")or die ($conexion->error);
         <?php include "./layouts/footer.php";?>
     </div>
 
-    
     <!-- jQuery -->
     <script src="./layouts/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
@@ -361,7 +219,6 @@ $resul = $conexion->query("SELECT * from areas_afac")or die ($conexion->error);
     <!-- Bootstrap 4 -->
     <script src="./layouts/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!--JS para hacer los llamados alta, editar y eliminar-->
-    <script src="../js/areauditoria.js"></script>
     <script src="../js/area_afac.js"></script>
 
 </body>

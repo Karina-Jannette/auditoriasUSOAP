@@ -8,7 +8,7 @@ $(document).ready(function(){
     });
     $(".eliminar").click(function(){
       $.ajax({
-        url: 'eliminararea_afac.php',
+        url: "../admin/consultas/eliminararea_afac.php",
         method: 'POST',
         data:{
           id:idEliminar

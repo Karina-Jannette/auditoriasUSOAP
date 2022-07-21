@@ -8,7 +8,7 @@ $(document).ready(function(){
     });
     $(".eliminar").click(function(){
       $.ajax({
-        url: 'eliminararea.php',
+        url: "../admin/consultas/eliminararea.php",
         method: 'POST',
         data:{
           id:idEliminar

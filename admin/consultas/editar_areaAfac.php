@@ -1,5 +1,5 @@
 <?php
-require_once "../conexion.php";
+require_once "../../conexion.php";
 
 
 if( isset($_POST['idEdit2']) && isset($_POST['area']) ){
@@ -11,6 +11,6 @@ if( isset($_POST['idEdit2']) && isset($_POST['area']) ){
                                   area='$area'
                                   
                                   where id_areaafac='$id'");
-                                  header("Location: areauditoria.php?success");                     
+                                  header("Location: ../area_afac.php?success");                     
 }
 ?>

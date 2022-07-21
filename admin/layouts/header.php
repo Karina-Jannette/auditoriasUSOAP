@@ -187,7 +187,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="./areauditoria.php" class="nav-link">
+                                    <a href="./area_afac.php" class="nav-link">
                                         <i class='fas fa-list'></i>
                                         <!--<i class='fas fa-edit'></i>-->
                                         <p>Areas AFAC</p>
@@ -259,17 +259,17 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="./alta_usuario.php" class="nav-link">
+                                    <a href="./usuario.php" class="nav-link">
                                         <i class="nav-icon fas fa-user-plus"></i>
                                         <p>Alta - Responsables</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                <!--<li class="nav-item">
                                     <a href="./usuario.php" class="nav-link">
                                         <i class='fas fa-address-book'></i>
                                         <p>Listado Responsable</p>
                                     </a>
-                                </li>
+                                </li>-->
                             </ul>
                         </li>
                         <li class="nav-item has-treeview">

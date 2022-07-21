@@ -63,13 +63,13 @@
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <td>Número de empleado</td>
-                                        <td>Rol</td>
-                                        <td>Área</td>
-                                        <td>Nombre(s)</td>
-                                        <td>Apellidos</td>
-                                        <td>Editar</td>
-                                        <td>Eliminar</td>
+                                        <th>Número de empleado</th>
+                                        <th>Rol</th>
+                                        <th>Área</th>
+                                        <th>Nombre(s)</th>
+                                        <th>Apellidos</th>
+                                        <th>Editar</th>
+                                        <th>Eliminar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -198,7 +198,7 @@
             data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <form action="editarusuario.php" method="POST" enctype="multipart/form-data">
+                    <form method="POST" enctype="multipart/form-data">
                         <div class="modal-header">
                             <h5 class="modal-title" id="modalEditarLabel">Actualizar datos usuario</h5>
                         </div>
@@ -269,7 +269,9 @@
     <script>
     $(document).ready(function() {
         $('#example1').DataTable({
-            "scrollX": true
+            "scrollX": true,
+            "responsive": true,
+            "autoWidth": false
         });
         $('.js-example-basic-multiple').select2({
             theme: "classic" //pone el tema un poco mas moderno

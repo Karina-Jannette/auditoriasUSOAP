@@ -15,7 +15,7 @@ function guardar(){
     return;
   }else{
     $.ajax({
-      url: "../admin/insertarusuario.php",
+      url: "../admin/consultas/insertarusuario.php",
       method: "POST",
       data: datos
     }).done(function(res){
@@ -36,7 +36,7 @@ function guardar(){
 function datosEdit(editar){
   //alert(editar);
   $.ajax({
-    url: "../admin/cons_usuarios.php",
+    url: "../admin/consultas/cons_usuarios.php",
     type: "GET"
   }).done(function(resp){
     obj = JSON.parse(resp);
@@ -76,7 +76,7 @@ function editUsuario(){
     //AJAX
     $.ajax({
       type: "POST",
-      url: "../admin/insertarusuario.php",
+      url: "../admin/consultas/insertarusuario.php",
       data: datos
     }).done(function(respuesta){
       if(respuesta==0){
@@ -99,7 +99,7 @@ $(document).ready(function(){
   });
   $(".eliminar").click(function(){
     $.ajax({
-      url: 'eliminarusuario.php',
+      url: '../admin/consultas/eliminarusuario.php',
       method: 'POST',
       data:{
         id:idEliminar
