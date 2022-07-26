@@ -57,9 +57,12 @@
                             <h1 class="m-2">Anexos</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6 text-right">
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                            <a class="btn btn-primary" id="mensub_fraccion" href="registrar_anexo.php" 
+                            type="button"><i class="fa fa-plus mr-2"></i>Agregar anexo</a>
+                            <!--<button type="button" class="btn btn-primary" data-toggle="modal"
                                 data-target="#ModalAgregar">
-                                <i class="fa fa-plus mr-2"></i>Registrar Anexo</button>
+                                <i class="fa fa-plus mr-2"></i>Registrar Anexo-->
+                            </button>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
@@ -73,7 +76,8 @@
                         <a class="nav-link anexos active" id="menanexos" href="anexos.php" type="button">Anexos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fracciones" id="menfracciones" href="fracciones.php" type="button">Fracciones</a>
+                        <a class="nav-link fracciones" id="menfracciones" href="fracciones.php"
+                            type="button">Fracciones</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link sub_fracciones" id="mensub_fraccion" href="sub.php" type="button">Sub
@@ -400,7 +404,8 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-success" onclick="editarsub()">Guardar cambios</button>
+                                <button type="button" class="btn btn-success" onclick="editarsub()">Guardar
+                                    cambios</button>
                             </div>
                         </form>
                     </div>
@@ -516,7 +521,7 @@
                                     <div class="row">
                                         <div class="col-md-3 form-group">
                                             <label for="num_anexo">Fracción</label>
-                                            <input type="text" class="form-control" id="fraEdit" name="fraEdit" 
+                                            <input type="text" class="form-control" id="fraEdit" name="fraEdit"
                                                 placeholder="Núm. Anexo" required disabled>
                                         </div>
                                         <div class="col form-group">
@@ -560,18 +565,20 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="notas">Notas</label>
-                                        <textarea name="notasFra" class="form-control" id="notasFra" required></textarea>
+                                        <textarea name="notasFra" class="form-control" id="notasFra"
+                                            required></textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                                <button type="button" onclick="editFra()" class="btn btn-success editar">Actualizar</buttton>
+                                <button type="button" onclick="editFra()" class="btn btn-success editar">Actualizar
+                                    </buttton>
                             </div>
                         </form>
                     </div>
                 </div>
-            </div> 
+            </div>
             <!--Fin modal editar Fracción-->
 
             <!--Modal Eliminar Fracción-->
@@ -594,7 +601,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
         <?php include "./layouts/footer.php";?>
     </div>
@@ -622,7 +629,6 @@
             "autoWidth": false
         });
     });
-
     </script>
     <script>
     multiselect();
