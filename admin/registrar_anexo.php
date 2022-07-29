@@ -1,5 +1,4 @@
 <?php
-
     session_start();
     require_once "../conexion.php";
     $resultado = $conexion->query("SELECT * from anexos")or die ($conexion->error);
@@ -37,15 +36,9 @@
     <!-- default icons used in the plugin are from Bootstrap 5.x icon library (which can be enabled by loading CSS below) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.min.css"
         crossorigin="anonymous">
-    <!-- alternatively you can use the font awesome icon library if using with `fas` theme (or Bootstrap 4.x) by uncommenting below. -->
-    <!-- link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" crossorigin="anonymous" -->
-
     <!-- the fileinput plugin styling CSS file -->
     <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/css/fileinput.min.css" media="all"
         rel="stylesheet" type="text/css" />
-    <!-- if using RTL (Right-To-Left) orientation, load the RTL CSS file after fileinput.css by uncommenting below -->
-    <!-- link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/css/fileinput-rtl.min.css" media="all" rel="stylesheet" type="text/css" /-->
-
 </head>
 
 <style>
@@ -78,7 +71,6 @@
                             <h3 class="card-title">Añadir anexo</h3>
                         </div>
                         <!-- /.card-header -->
-
                         <form role="form">
                             <div class="card-body">
                                 <div class="row">
@@ -142,19 +134,12 @@
                             <h3 class="card-title">Agregar anexos mediante archivos</h3>
                         </div>
                         <div class="card-body">
-                            <form>
-                                <div>
-                                    <div class="form-group">
-                                        <label for="InputFile">Subir archivo(s) para dar de alta anexos</label>
-                                        <div class="file-loading">
-                                            <input id="input-b7 input-es" name="input-b7[]" multiple type="file"
-                                                class="file" data-allowed-file-extensions='["csv", "txt", "xlsx"]'>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class="footer">
-                                        <button type="submit" class="btn btn-success" onclick="archivocsv()">Subir
-                                            archivo</button>
+                            <form enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="InputFile">Subir archivo(s) para dar de alta anexos</label>
+                                    <div class="file-loading">
+                                        <input id="inputFile" name="inputFile[]" type="file" multiple=true class="file"
+                                            data-allowed-file-extensions='["csv", "txt", "xlsx"]'>
                                     </div>
                                 </div>
                             </form>
@@ -186,7 +171,8 @@
         type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/js/plugins/filetype.min.js"
         type="text/javascript"></script>
-    <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/js/plugins/sortable.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/js/plugins/sortable.min.js"
+        type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/js/plugins/piexif.min.js"
         type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
@@ -194,5 +180,22 @@
     <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/js/fileinput.min.js"></script>
     <!--Script para  el lenguaje-->
     <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/js/locales/ES.js"></script>
+    <script>
+        $("#archivos").fileinput({
+            uploadUrl: "upload.php",
+            auloadsAsync: false,
+            minFileCount: 1,
+            MaxFileCount: 20,
+            showUpload: false,
+            showRemove: false,
+            initialPreview: [
+
+            ],
+            initialPreviewConfig: []
+        }).on("filebatchselected", function(event,files){
+            $("archivos").fileinput("upload");
+        });
+    </script>
 </body>
+
 </html>

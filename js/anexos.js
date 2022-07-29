@@ -533,13 +533,3 @@ function guardarsub(){
     });
   }
 }
-
-function archivocsv(){
-  var archivo=$('input[name="InputFile"]').val();
-  var returnError=false;
-
-  if(archivo==""){
-    alert ("Debe subir un archivo");
-    
-  }
-}
