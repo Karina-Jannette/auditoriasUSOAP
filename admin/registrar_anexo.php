@@ -41,12 +41,6 @@
         rel="stylesheet" type="text/css" />
 </head>
 
-<style>
-.upload {
-    margin-left: 1cm;
-}
-</style>
-
 <body class="hold-transition sidebar-mini layout-fixed">
 
     <div class="wrapper">
@@ -138,7 +132,7 @@
                                 <div class="form-group">
                                     <label for="InputFile">Subir archivo(s) para dar de alta anexos</label>
                                     <div class="file-loading">
-                                        <input id="inputFile" name="inputFile[]" type="file" multiple=true class="file"
+                                        <input id="archivos" name="archivos[]" type="file" multiple=true class="file"
                                             data-allowed-file-extensions='["csv", "txt", "xlsx"]'>
                                     </div>
                                 </div>
