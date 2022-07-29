@@ -2,12 +2,11 @@
 
     session_start();
     require_once "../conexion.php";
-
     $resultado = $conexion->query("SELECT * from anexos")or die ($conexion->error);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -32,7 +31,28 @@
     <link rel="stylesheet" href="./layouts/css/to_do.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" rel="stylesheet" />
+    <!-- bootstrap 5.x or 4.x is supported. You can also use the bootstrap css 3.3.x versions -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+        crossorigin="anonymous">
+    <!-- default icons used in the plugin are from Bootstrap 5.x icon library (which can be enabled by loading CSS below) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.min.css"
+        crossorigin="anonymous">
+    <!-- alternatively you can use the font awesome icon library if using with `fas` theme (or Bootstrap 4.x) by uncommenting below. -->
+    <!-- link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" crossorigin="anonymous" -->
+
+    <!-- the fileinput plugin styling CSS file -->
+    <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/css/fileinput.min.css" media="all"
+        rel="stylesheet" type="text/css" />
+    <!-- if using RTL (Right-To-Left) orientation, load the RTL CSS file after fileinput.css by uncommenting below -->
+    <!-- link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/css/fileinput-rtl.min.css" media="all" rel="stylesheet" type="text/css" /-->
+
 </head>
+
+<style>
+.upload {
+    margin-left: 1cm;
+}
+</style>
 
 <body class="hold-transition sidebar-mini layout-fixed">
 
@@ -85,31 +105,61 @@
                                                 ?>
                                             </select>
                                         </div>
-                                        <br>
-                                        <!--Button alta-->
-                                        <div class="footer">
-                                            <button type="submit" class="btn btn-success">Dar de alta</button>
+                                        <!-- text input -->
+                                        <div class="form-group">
+                                            <label for="...">...</label>
+                                            <input type="..." class="form-control" id="..." placeholder="...">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="...">...</label>
+                                            <input type="..." class="form-control" id="..." placeholder="...">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
+                                        <!-- text input -->
                                         <div class="form-group">
-                                            <label for="exampleInputFile">Subir archivo</label>
-                                            <div class="input-group">
-                                                <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="exampleInputFile">
-                                                    <label class="custom-file-label" for="exampleInputFile">...</label>
-                                                </div>
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text" id="">Subir anexo</span>
-                                                </div>
-                                            </div>
+                                            <label for="...">...</label>
+                                            <input type="..." class="form-control" id="..." placeholder="...">
                                         </div>
+                                        <div class="form-group">
+                                            <label for="...">...</label>
+                                            <input type="..." class="form-control" id="..." placeholder="...">
+                                        </div>
+                                    </div>
+                                    <!--Button alta-->
+                                    <div class="footer">
+                                        <button type="submit" class="btn btn-success">Dar de alta</button>
                                     </div>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <!-- /.card -->
+
+                    <!--Subir archivos-->
+                    <div class="card text-center card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">Agregar anexos mediante archivos</h3>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div>
+                                    <div class="form-group">
+                                        <label for="InputFile">Subir archivo(s) para dar de alta anexos</label>
+                                        <div class="file-loading">
+                                            <input id="input-b7 input-es" name="input-b7[]" multiple type="file"
+                                                class="file" data-allowed-file-extensions='["csv", "txt", "xlsx"]'>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="footer">
+                                        <button type="submit" class="btn btn-success" onclick="archivocsv()">Subir
+                                            archivo</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
@@ -128,8 +178,21 @@
     <script src="../js/anexos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
-    <script>multiselect();</script>
-
+    <script>
+    multiselect();
+    </script>
+    <!--Subir archivos-->
+    <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/js/plugins/buffer.min.js"
+        type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/js/plugins/filetype.min.js"
+        type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/js/plugins/sortable.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/js/plugins/piexif.min.js"
+        type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/js/fileinput.min.js"></script>
+    <!--Script para  el lenguaje-->
+    <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.5.0/js/locales/ES.js"></script>
 </body>
-
 </html>

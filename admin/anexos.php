@@ -57,8 +57,8 @@
                             <h1 class="m-2">Anexos</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6 text-right">
-                            <a class="btn btn-primary" id="mensub_fraccion" href="registrar_anexo.php" 
-                            type="button"><i class="fa fa-plus mr-2"></i>Agregar anexo</a>
+                            <a class="btn btn-primary" id="mensub_fraccion" href="registrar_anexo.php" type="button"><i
+                                    class="fa fa-plus mr-2"></i>Agregar anexo</a>
                             <!--<button type="button" class="btn btn-primary" data-toggle="modal"
                                 data-target="#ModalAgregar">
                                 <i class="fa fa-plus mr-2"></i>Registrar Anexo-->
@@ -100,8 +100,8 @@
                                         <th>Área AFAC</th>
                                         <th>Incisos</th>
                                         <th>Notas</th>
-                                        <th>Editar</th>
-                                        <th>Eliminar</th>
+                                        <th>Documentos</th>
+                                        <th>Elementos</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -115,15 +115,22 @@
                                         <td><?php echo $fila['area_afac'];?></td>
                                         <td><?php echo $fila['incisos'];?></td>
                                         <td><?php echo $fila['notas'];?></td>
-
-                                        <td><button class="btn btn-success btnEditarAnexo"
+                                        <td>  <i class="fa fa-file-archive"></i></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-secondary">
+                                                <i class="fa fa-file"></i>
+                                            </button>
+                                            <button class="btn btn-success btn-sm btnEditarAnexo"
                                                 data-target="#modalEditarAnexo" data-toggle="modal"
                                                 onclick="editarAnexo(<?php echo $fila['id_anexo'];?>)"><i
-                                                    class="fa fa-edit"></i></button></td>
-
-                                        <td><button class="btn btn-danger EliminarAnexo" data-toggle="modal"
+                                                class="fa fa-edit"></i>
+                                            </button>
+                                            <button
+                                                class="btn btn-danger btn-sm EliminarAnexo" data-toggle="modal"
                                                 onclick="eliminarAnexo(<?php echo $fila['id_anexo'];?>)"
-                                                data-target="#modalEliminar"><i class="fa fa-trash"></i></button></td>
+                                                data-target="#modalEliminar"><i class="fa fa-trash"></i>
+                                            </button>
+                                        </td>
                                     </tr>
                                     <?php } ?>
                                 </tbody>
